@@ -1,19 +1,21 @@
-<header class="navbar navbar-fixed-top navbar-default">
-  <div class="container"> 
+   <div class = "navbar-fixed">
     <nav>
-<%= link_to image_tag("AtsaLogo.png", alt: "ATSA"),
-            root_path, class: "logo"%>
-      <ul class="nav navbar-nav navbar-right">
+      <div class = "nav-wrapper container">
+        <%= link_to image_tag("AtsaLogo.png", alt: "ATSA"),
+                    root_path, class: "brand-logo"%>
+
+      <ul id = "nav-mobile" class="right hide-on-med-and-down">
 
         <li><%= link_to "Home", root_path %></li>
         
         <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
+          <li><%= link_to "Courses", users_path %></li>
+            <% if admin? %>
+                <li><%= link_to "Organization", current_user.organization %></li>
+            <%end%>
+
+            <li><a class="dropdown-button" href="#" data-activates="dropdown1">Account<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+            <ul id="dropdown1" class = "dropdown-content">
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
@@ -22,11 +24,13 @@
               </li>
             </ul>
           </li>
+
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
           <li><%= link_to "Sign Up", signup_path %></li>
         <% end %>
       </ul>
+          </div>
     </nav>
-  </div>
-</header>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <!-- Table -->
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>
+        <div class ="center"> User Name</div>
+      </th>
+      <th>
+        <div class = "center">Email Address</div>
+      </th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+          <td style="width:50%">
+            <div class="center"><%= link_to user.name, user %></div>
+
+          </td>
+          <td style="width:50%">
+            <div class ="center"> <%= link_to user.email, user %></div>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+
+
+  </table>
+</div>

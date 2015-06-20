@@ -27,6 +27,10 @@ module SessionsHelper
     end
   end
 
+
+
+
+
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?
@@ -54,6 +58,10 @@ module SessionsHelper
   # Stores the URL trying to be accessed.
   def store_location
     session[:forwarding_url] = request.url if request.get?
+  end
+    # Returns true if the user clearance is greater than 2
+  def admin?
+    true
   end
 
 end

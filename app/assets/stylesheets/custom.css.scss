@@ -1,11 +1,24 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+//@import "bootstrap-sprockets";
+//@import "bootstrap";
+@import "materialize/components/color";
+$primary-color: color("grey", "lighten-2") !default;
+@import "materialize";
 
 /* universal */
-
-body {
-  padding-top: 60px;
+$primary-color: color("materialize-red", "lighten-2") !default;
+$primary-color-light: false !default;
+$primary-color-dark: false !default;
+@if not $primary-color-light {
+  $primary-color-light: lighten($primary-color, 15%);
 }
+@if not $primary-color-dark {
+  $primary-color-dark: darken($primary-color, 15%);
+}
+$secondary-color: color("teal", "lighten-1") !default;
+$success-color: color("green", "base") !default;
+$error-color: color("red", "base") !default;
+
+$link-color: color("light-blue", "darken-1") !default;
 
 section {
   overflow: auto;
@@ -29,14 +42,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 4em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
@@ -47,20 +60,19 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+
 }
 
 /* header */
 
-.navbar{
-  margin-bottom: 0px;
-}
 
-.logo {
+.brand-logo {
   float: left;
-  margin-right: 10px;
-  padding-top: 9px;
+  //margin-right: 10px;
+  //padding-top: 9px;
+  margin-top:0.2em;
   img{
-  height: 35px;
+  width: 150px;
   }
 }
 
@@ -153,9 +165,6 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-input {
-  height: auto !important;
-}
 #error_explanation {
   color: red;
   ul {
@@ -163,13 +172,13 @@ input {
     margin: 0 0 30px 0;
   }
 }
-
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
+//
+//.field_with_errors {
+//  @extend .has-error;
+//  .form-control {
+//    //color: $state-danger-text;
+//  }
+//}
 
 .checkbox {
   margin-top: -10px;
@@ -193,9 +202,34 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
+    border-bottom: 1px solid gray;
   }
 }
 
+/* all containers */
 
 
+
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+.section{
+  height: 92.5vh;
+background-size: 100%;
+  background-image: url("pencil_jobs_w1.jpeg");
+}
+
+.btn{
+  margin-top:2em;
+}
+
+nav ul a {
+  color:black;
+}

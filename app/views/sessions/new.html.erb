@@ -6,16 +6,22 @@
     <div class="col-md-6 col-md-offset-3">
       <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+          <div class ="input-field col s12" style="height: 3rem">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+          <div class ="input-field col s12" style="height: 3rem">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control' %>
+         </div>
 
-      <%= f.label :password %>
+          <p>
+            <%= f.check_box :remember_me ,type: "checkbox" %>
+            <%= f.label :remember_me do %>
+                <span>Remember me on this computer</span>
+          </p>
 
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :remember_me, class: "checkbox inline" do %>
-      <%= f.check_box :remember_me %>
-      <span>Remember me on this computer</span>
       <% end %>
       
       <%= f.submit "Log in", class: "btn btn-primary" %>

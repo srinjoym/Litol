@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616225943) do
+ActiveRecord::Schema.define(version: 20150618024853) do
 
   create_table "organizations", force: :cascade do |t|
     t.string   "organizationName"
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 20150616225943) do
     t.string   "remember_digest"
     t.integer  "clearance"
     t.string   "license"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id"
 
 end

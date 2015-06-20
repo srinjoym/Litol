@@ -3,28 +3,37 @@
   <h1>Sign up</h1>
 
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col s12">
       <%= form_for (@organization) do |organization_form| %>
       <%= render 'shared/error_messages' %>
 
-      <%= organization_form.label :organizationName, "Institution Name" %>
-      <%= organization_form.text_field :organizationName, class: 'form-control' %>
 
-      <%= organization_form.label :licenseKey, "License Key" %>
-      <%= organization_form.text_field :licenseKey, class: 'form-control' %>
+        <div class ="input-field col s12" style="height: 3rem">
+          <%= organization_form.text_field :organizationName, class: "validate" %>
+          <%= organization_form.label :organizationName, "Institution Name" %>
+        </div>
 
-      <%= organization_form.fields_for @users do |user_form| %>
-        <%= user_form.label :name, "Admin Name" %>
-        <%= user_form.text_field :name, class: 'form-control' %>
-
-        <%= user_form.label :email %>
-        <%= user_form.email_field :email, class: 'form-control' %>
-
-        <%= user_form.label :password %>
-        <%= user_form.password_field :password, class: 'form-control' %>
-
-        <%= user_form.label :password_confirmation, "Confirmation" %>
-        <%= user_form.password_field :password_confirmation, class: 'form-control' %>
+          <div class ="input-field col s12" style="height: 3rem">
+            <%= organization_form.label :licenseKey, "License Key" %>
+            <%= organization_form.text_field :licenseKey, class: 'input-field' %>
+          </div>
+          <%= organization_form.fields_for :users do |user_form| %>
+          <div class ="input-field col s12" style="height: 3rem">
+                <%= user_form.label :name, "Admin Name" %>
+                <%= user_form.text_field :name, class: 'input-field' %>
+          </div>
+              <div class ="input-field col s12" style="height: 3rem">
+                <%= user_form.label :email %>
+                <%= user_form.email_field :email, class: 'input-field' %>
+              </div>
+              <div class ="input-field col s12" style="height: 3rem">
+                <%= user_form.label :password %>
+                <%= user_form.password_field :password, class: 'input-field' %>
+              </div>
+              <div class ="input-field col s12" style="height: 3rem">
+                <%= user_form.label :password_confirmation, "Confirmation" %>
+                <%= user_form.password_field :password_confirmation, class: 'input-field' %>
+              </div>
   <% end %>
 
       <%= organization_form.submit "Create my account", class: "btn btn-primary" %>
