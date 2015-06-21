@@ -1,7 +1,5 @@
 class OrganizationsController < ApplicationController
-
-   before_action :logged_in_user
-   before_action :moreLicenses
+  
 	def new
 		@organization = Organization.new
     @organization.users.build
