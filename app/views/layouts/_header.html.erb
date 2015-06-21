@@ -10,7 +10,7 @@
         
         <% if logged_in? %>
           <li><%= link_to "Courses", users_path %></li>
-            <% if admin? %>
+            <% if admin?(current_user) %>
                 <li><%= link_to "Organization", current_user.organization %></li>
             <%end%>
 

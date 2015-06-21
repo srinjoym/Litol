@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails ImagineDragons: development" uuid="5ef37cf3-bc23-4c13-9257-8332751f49c1">
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="Rails ImagineDragons: test" uuid="b13565c6-6a2a-4357-a9be-eb464e0c00cc">
+      <first-sync>true</first-sync>
+    </data-source>
+  </component>
+</project>

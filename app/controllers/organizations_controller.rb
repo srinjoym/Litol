@@ -1,5 +1,7 @@
 class OrganizationsController < ApplicationController
-  # before_action :moreLicenses, only: [:show]
+
+   before_action :logged_in_user
+   before_action :moreLicenses
 	def new
 		@organization = Organization.new
     @organization.users.build
@@ -7,6 +9,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
     @organization.numLicenses = 5
+    @organization.users[0].clearance=2
     if @organization.save
         log_in @organization.users[0]
         flash[:success] = "Welcome to Project Imagine Dragons!"
@@ -41,8 +44,11 @@ class OrganizationsController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
 
-  #   # Checks more licenses are available
-  # def moreLicenses
-  #   current_user.organization.numLicenses-current_user.organization.users.length+1>=3
-  # end
+    # Checks more licenses are available
+  def moreLicenses
+    unless current_user.clearance>=2&&current_user.organization.numLicenses-current_user.organization.users.length+1>=3
+      store_location
+      redirect_to current_user
+    end
+  end
 end

@@ -59,9 +59,10 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end
-    # Returns true if the user clearance is greater than 2
-  def admin?
-    true
+    # Returns true if the user clearance is greater than 2]
+
+  def admin?(user)
+    user.clearance>=2
   end
 
 end

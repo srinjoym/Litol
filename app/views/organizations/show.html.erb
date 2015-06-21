@@ -1,0 +1,19 @@
+<% provide(:title, current_user.organization.organizationName) %>
+<div class="row">
+
+    <section class="user_info">
+      <h1>
+        <%=current_user.organization.organizationName%>'s Current Users
+      </h1>
+      <div class = "center">
+        <h2 style="color:red"> Seats Left: <%= current_user.organization.numLicenses-@users.length+1%></h2>
+     <%=if(current_user.organization.numLicenses-@users.length+1>=1)
+          link_to "Add Users", addUsers_path
+     end%>
+
+      </div>
+        <%=render 'organizations/showUsers'%>
+
+    </section>
+
+</div>
