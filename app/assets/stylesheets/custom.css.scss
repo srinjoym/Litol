@@ -223,7 +223,7 @@ main {
 .section{
   height: 92.5vh;
 background-size: 100%;
-  background-image: url("cover.jpeg");
+background-image: url(asset_path('cover.jpg'));
 }
 
 .btn{
