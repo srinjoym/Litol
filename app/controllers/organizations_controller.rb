@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  
+
 	def new
 		@organization = Organization.new
     @organization.users.build
