@@ -35,9 +35,9 @@
 #                 content: "https://www.youtube.com/watch?v=XtPryPyT3I0&list=PLVext98k2evjQVYqA3oponW9ySF5GWTs9",
 #                 contentType:"vid",
 #                 chapter_id:7)
-
-Section.create!(name:  "機率 (Probability) with 葉丙成 Ping-Cheng Yeh (Benson)",
-
-                content: "https://www.youtube.com/watch?v=XtPryPyT3I0&list=PLVext98k2evjQVYqA3oponW9ySF5GWTs9",
-                contentType:"vid",
-                chapter_id:7)
+#
+# Section.create!(name:  "機率 (Probability) with 葉丙成 Ping-Cheng Yeh (Benson)",
+#
+#                 content: "https://www.youtube.com/watch?v=XtPryPyT3I0&list=PLVext98k2evjQVYqA3oponW9ySF5GWTs9",
+#                 contentType:"vid",
+#                 chapter_id:7)

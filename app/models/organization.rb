@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
-    has_many :users
-    accepts_nested_attributes_for :users
-	  attr_accessor :remember_token
+  has_many :users
+  accepts_nested_attributes_for :users
+  attr_accessor :remember_token
   # before_save { self.email = email.downcase }
   validates :organizationName,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -15,7 +15,7 @@ class Organization < ActiveRecord::Base
   # Returns the hash digest of the given string.
   def Organization.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+        BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
