@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
+  get 'sections/new'
+
+  get 'chapters/new'
+
+  get 'courses/new'
+
   get 'organizations/new'
 
   get 'sessions/new'
   resources :users
   resources :organizations
+  resources :courses
+  resources :chapters
+  resources :sections
   root             'static_pages#home'
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'

@@ -2,23 +2,13 @@
 //@import "bootstrap";
 @import "materialize/components/color";
 $primary-color: color("grey", "lighten-2") !default;
+$secondary-color: color(" blue-grey", "darken-1") !default;
 @import "materialize";
 
 /* universal */
-$primary-color: color("materialize-red", "lighten-2") !default;
-$primary-color-light: false !default;
-$primary-color-dark: false !default;
-@if not $primary-color-light {
-  $primary-color-light: lighten($primary-color, 15%);
+.btn{
+  @extend .grey, .darken-1;
 }
-@if not $primary-color-dark {
-  $primary-color-dark: darken($primary-color, 15%);
-}
-$secondary-color: color("teal", "lighten-1") !default;
-$success-color: color("green", "base") !default;
-$error-color: color("red", "base") !default;
-
-$link-color: color("light-blue", "darken-1") !default;
 
 section {
   overflow: auto;
@@ -40,15 +30,20 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
-
-h1 {
+h1{
   font-size: 4em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
-
 h2 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h3 {
   font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
@@ -232,4 +227,14 @@ background-image: url(asset_path('cover.jpg'));
 
 nav ul a {
   color:black;
+}
+
+.card span{
+  color:black;
+}
+.arrow {
+  line-height: 200px;
+}
+.arrow i{
+  vertical-align: middle;
 }

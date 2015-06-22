@@ -2,14 +2,14 @@
 <div class="row">
 
     <section class="user_info">
-      <h1>
+      <h2>
         <%=current_user.organization.organizationName%>'s Current Users
-      </h1>
+      </h2>
       <div class = "center">
-        <h2 style="color:red"> Seats Left: <%= current_user.organization.numLicenses-@users.length+1%></h2>
-     <%=if(current_user.organization.numLicenses-@users.length+1>=1)
-          link_to "Add Users", addUsers_path
-     end%>
+        <h3 style="color:red"> Seats Left: <%= current_user.organization.numLicenses-@users.length+1%></h3>
+     <%if (current_user.organization.numLicenses-@users.length+1)>=1%>
+          <h3><%=link_to "Add Users", addUsers_path%></h3>
+     <%end%>
 
       </div>
         <%=render 'organizations/showUsers'%>

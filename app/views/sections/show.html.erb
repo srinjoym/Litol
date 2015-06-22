@@ -1,0 +1,21 @@
+
+
+<h2><%= @section.name %></h2>
+<div class="valign-wrapper">
+
+  <a class="arrow"href="" style=""><i style = "float:left vertical-align:middle"class="large mdi-navigation-arrow-back valign"></i></a>
+
+
+<div class="container">
+  <% if @section.contentType =="vid" %>
+      <div class="video-container">
+        <iframe width="854" height="510" src="https://www.youtube.com/embed/XtPryPyT3I0?list=PLVext98k2evjQVYqA3oponW9ySF5GWTs9" frameborder="0" allowfullscreen></iframe>
+      </div>
+  <% else %>
+
+  <% end %>
+
+</div>
+  <a class="arrow"href="" style=""><i style = "float:right vertical-align:middle"class="large mdi-navigation-arrow-forward valign"></i></a>
+
+</div>

@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618024853) do
+ActiveRecord::Schema.define(version: 20150622043737) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.text     "name"
+    t.text     "overview"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "order"
+  end
+
+  add_index "chapters", ["course_id"], name: "index_chapters_on_course_id"
+
+  create_table "courses", force: :cascade do |t|
+    t.text     "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "imageSource"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string   "organizationName"
@@ -21,6 +40,18 @@ ActiveRecord::Schema.define(version: 20150618024853) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  create_table "sections", force: :cascade do |t|
+    t.text     "name"
+    t.text     "content"
+    t.text     "contentType"
+    t.integer  "chapter_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "order"
+  end
+
+  add_index "sections", ["chapter_id"], name: "index_sections_on_chapter_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

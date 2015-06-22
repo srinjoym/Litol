@@ -1,27 +1,23 @@
-<div class="panel panel-default">
+<div class="container">
   <!-- Table -->
-  <table class="table">
-    <tbody>
+  <table class="centered bordered hoverable">
+    <thead>
     <tr>
-      <th>
-        <div class ="center"> User Name</div>
-      </th>
-      <th>
-        <div class = "center">Email Address</div>
-      </th>
+      <th>User Name</th>
+      <th>Email Address</th>
     </tr>
+    </thead>
     <% @users.each do |user| %>
         <tr>
           <td style="width:50%">
-            <div class="center"><%= link_to user.name, user %></div>
-
+            <%= link_to user.name, user %>
           </td>
           <td style="width:50%">
-            <div class ="center"> <%= link_to user.email, user %></div>
+           <%= link_to user.email, user %>
           </td>
         </tr>
     <% end %>
-    </tbody>
+
 
 
   </table>
