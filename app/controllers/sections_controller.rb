@@ -3,6 +3,6 @@ class SectionsController < ApplicationController
   end
 
   def show
-    @section = Section.find_by params[:id]
+    @section = Section.find_by (params[:id])
   end
 end
