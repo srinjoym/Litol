@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622213226) do
+ActiveRecord::Schema.define(version: 20150622324853) do
 
   create_table "chapters", force: :cascade do |t|
     t.text     "name"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20150622213226) do
     t.integer  "organization_id"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["organization_id"], name: "index_users_on_organization_id"
 
 end
