@@ -9,7 +9,12 @@
 #              description: "Best course on the internet",
 #              imageSource:"Course2.png")
 #
-5.times do |n|
+
+Course.create!(name:  "Crash Course Astronomy",
+               description: "A guided tour of the entire universe.",
+               imageSource: "assets/Course1.png")
+
+4.times do |n|
   name  = Faker::Name.name
   description = "Best course on the internet"
   imageSource = "Course"+n.to_s+".png"
@@ -18,12 +23,16 @@
                imageSource: imageSource)
 end
 
+Chapter.create!(name:  "Astronomy Chapter 1",
+                order: 1,
+                overview: "Astronomy Basics",
+                course_id:Course.first.id)
 
 5.times do |n|
-  order=n+1
-  name  = "Chapter "+(n+1).to_s
-  overview = ((n+1).ordinalize) + " Chapter"
-  course_id = 1
+  order=n+2
+  name  = "Chapter "+(n+2).to_s
+  overview = ((n+2).ordinalize) + " Chapter"
+  course_id = Course.first.id
   Chapter.create!(name:  name,
                  order: order,
                  overview: overview,
@@ -38,7 +47,7 @@ Section.create!(name:  "Introduction to Astronomy: Crash Course Astronomy #1",
                 contentType:"vid",
                 chapter_id:Chapter.first.id,order:1)
 
-Section.create!(name:  "Cycles in the Sky: Crash Course Astronomy #3",
+Section.create!(name:  "Naked Eye Observations: Crash Course Astronomy #2",
 
                 content: "https://www.youtube.com/embed/L-Wtlev6suc?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
                 contentType:"vid",
