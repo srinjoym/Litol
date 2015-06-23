@@ -9,35 +9,52 @@
 #              description: "Best course on the internet",
 #              imageSource:"Course2.png")
 #
-# 5.times do |n|
-#   name  = Faker::Name.name
-#   description = "Best course on the internet"
-#   imageSource = "Course"+n.to_s+".png"
-#   Course.create!(name:  name,
-#                description: description,
-#                imageSource: imageSource)
-# end
-#
-#
-# 5.times do |n|
-#   order=n+1
-#   name  = "Chapter "+(n+1).to_s
-#   overview = ((n+1).ordinalize) + " Chapter"
-#   course_id = 1
-#   Chapter.create!(name:  name,
-#                  order: order,
-#                  overview: overview,
-#                   course_id:course_id)
-# end
-#
-# Section.create!(name:  "機率 (Probability) with 葉丙成 Ping-Cheng Yeh (Benson)",
-#
-#                 content: "https://www.youtube.com/watch?v=XtPryPyT3I0&list=PLVext98k2evjQVYqA3oponW9ySF5GWTs9",
-#                 contentType:"vid",
-#                 chapter_id:Chapter.first.id)
+5.times do |n|
+  name  = Faker::Name.name
+  description = "Best course on the internet"
+  imageSource = "Course"+n.to_s+".png"
+  Course.create!(name:  name,
+               description: description,
+               imageSource: imageSource)
+end
 
-Section.create!(name:  "Coding the Matrix: Linear Algebra through Computer Science Applications with Phi",
 
-                content: "https://youtu.be/IWugXcWpfoM?list=PLVext98k2evjQVYqA3oponW9ySF5GWTs9",
+5.times do |n|
+  order=n+1
+  name  = "Chapter "+(n+1).to_s
+  overview = ((n+1).ordinalize) + " Chapter"
+  course_id = 1
+  Chapter.create!(name:  name,
+                 order: order,
+                 overview: overview,
+                  course_id:course_id)
+end
+
+
+
+Section.create!(name:  "Introduction to Astronomy: Crash Course Astronomy #1",
+
+                content: "https://www.youtube.com/embed/0rHUDWjR5gg?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
                 contentType:"vid",
-                chapter_id:Chapter.first.id)
+                chapter_id:Chapter.first.id,order:1)
+
+Section.create!(name:  "Cycles in the Sky: Crash Course Astronomy #3",
+
+                content: "https://www.youtube.com/embed/L-Wtlev6suc?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
+                contentType:"vid",
+                chapter_id:Chapter.first.id,order:2)
+Section.create!(name:  "Cycles in the Sky: Crash Course Astronomy #3",
+
+                content: "https://www.youtube.com/embed/01QWC-rZcfE?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
+                contentType:"vid",
+                chapter_id:Chapter.first.id,order:3)
+Section.create!(name:  "Moon Phases: Crash Course Astronomy #4",
+
+                content: "https://www.youtube.com/embed/AQ5vty8f9Xc?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
+                contentType:"vid",
+                chapter_id:Chapter.first.id,order:4)
+Section.create!(name:  "Eclipses: Crash Course Astronomy #5",
+
+                content: "https://www.youtube.com/embed/PRgua7xceDA?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
+                contentType:"vid",
+                chapter_id:Chapter.first.id,order:5)
