@@ -12,7 +12,7 @@
 
 Course.create!(name:  "Crash Course Astronomy",
                description: "A guided tour of the entire universe.",
-               imageSource: "assets/Course1.png")
+               imageSource: asset_path("assets/Course1.png"))
 
 4.times do |n|
   name  = Faker::Name.name
