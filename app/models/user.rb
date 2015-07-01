@@ -1,5 +1,5 @@
   class User < ActiveRecord::Base
-
+has_many :active_courses
 belongs_to :organization
 
   attr_accessor :remember_token

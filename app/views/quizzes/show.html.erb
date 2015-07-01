@@ -1,0 +1,38 @@
+<div class="container">
+<h2>Chapter <%= @quiz.Chapter_id%> Quiz</h2>
+
+  <div class="row">
+
+
+    <%= form_tag new_quiz_quiz_result_url(@quiz), :method => 'get' do %>
+  <ol>
+    <% @questions.each do |question| %>
+            <div class ="input-field col s12" style="margin-top:2em" >
+              <li><%= question.question %></li>
+            </div>
+            <div class ="input-field col s12" style="">
+            <%= radio_button_tag question.id,'a'%>
+              <%= label_tag question.id.to_s+'_a', question.answer_choices.find_by(letter:"a").answer %>
+
+            </div>
+            <div class ="input-field col s12" >
+              <%= radio_button_tag question.id,'b'%>
+              <%= label_tag question.id.to_s+'_b', question.answer_choices.find_by(letter:"b").answer %>
+            </div>
+            <div class ="input-field col s12">
+              <%= radio_button_tag question.id,'c'%>
+              <%= label_tag question.id.to_s+'_c', question.answer_choices.find_by(letter:"c").answer %>
+            </div>
+            <div class ="input-field col s12" >
+              <%= radio_button_tag question.id,'d'%>
+              <%= label_tag question.id.to_s+'_d', question.answer_choices.find_by(letter:"d").answer %>
+            </div>
+    <% end %>
+    <%= submit_tag "Done" %>
+</ol>
+
+    <% end %>
+
+
+  </div>
+</div>

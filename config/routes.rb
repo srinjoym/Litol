@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'quiz_results/new'
+
+  get 'quizzes/new'
+
+  get 'user_milestones/new'
+
   get 'sections/new'
 
   get 'chapters/new'
@@ -8,11 +14,15 @@ Rails.application.routes.draw do
   get 'organizations/new'
 
   get 'sessions/new'
-  resources :users
+
   resources :organizations
+  resources :users
   resources :courses
   resources :chapters
   resources :sections
+  resources :quizzes do
+  resources :quiz_results
+  end
   root             'static_pages#home'
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'

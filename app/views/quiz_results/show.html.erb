@@ -1,0 +1,15 @@
+<div class = "container">
+  <h2><%=@quiz_result.quiz.name%> Results</h2>
+
+  <% if @quiz_result.passed%>
+      <h3 style="color:green">You Passed!</h3>
+      <h3 style="color:green">Score: <%=@quiz_result.score%> / 5.</h3>
+      <h3><%= link_to "Click here to go to the next section", Chapter.find_by(id:@quiz_result.chapter_id+1).sections.first%></h3>
+      <%else%>
+      <h3 style="color:red">You failed.</h3>
+      <h3 style="color:red">You got <%=@quiz_result.score%> / 5</h3>
+      <h3><%= link_to "Click here to retake", @quiz_result.quiz%></h3>
+      <%end%>
+
+</div>
+

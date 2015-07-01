@@ -28,8 +28,8 @@
       <i style = "float:left vertical-align:middle"class="large mdi-navigation-arrow-forward valign"></i>
   <% end %>
   <%else%>
-      <div class= "btn btn-default disabled">
-        <i style = "float:left vertical-align:middle"class="large mdi-navigation-arrow-forward valign"></i>
-      </div>
+      <%= link_to @quizzes.find_by(Chapter_id:@section.chapter_id), class: "btn btn-default" do %>
+          <i style = "float:left vertical-align:middle"class="large mdi-navigation-arrow-forward valign"></i>
+      <% end %>
   <%end%>
 </div>

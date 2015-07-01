@@ -18,6 +18,8 @@
           <% chapter.sections.each do |section| %>
                 <li> <%= link_to section.name, section %></li>
           <%end%>
+
+            <li> <%= link_to chapter.quiz.name, chapter.quiz if !chapter.quiz.nil?%></li>
           </ol>
         </div>
       </div>

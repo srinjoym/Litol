@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
   has_many :users
+  has_and_belongs_to_many :courses
   accepts_nested_attributes_for :users
   attr_accessor :remember_token
   # before_save { self.email = email.downcase }
