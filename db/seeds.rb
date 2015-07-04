@@ -34,10 +34,10 @@ sectionSheet.each_row_streaming do |row|
   Section.create!(name:row[0].value, content:row[1].value, contentType:row[2].value, chapter_id: row[3].value,order: row[4].value)
 end
 quizSheet.each_row_streaming do |row|
-  Quiz.create!(id:row[0].value, name:row[1].value, Chapter_id:row[2].value)
+  Quiz.create!(id:row[0].value, name:row[1].value, chapter_id:row[2].value)
 end
 quizQuestionSheet.each_row_streaming do |row|
-  QuizQuestion.create!(id:row[0].value, Quiz_id:row[1].value, question:row[2].value, correct_answer: row[3].value)
+  QuizQuestion.create!(id:row[0].value, quiz_id:row[1].value, question:row[2].value, correct_answer: row[3].value)
 end
 answerChoicesSheet.each_row_streaming do |row|
   AnswerChoice.create!(id:row[0].value, quiz_question_id:row[1].value, answer:row[2].value, letter: row[3].value)

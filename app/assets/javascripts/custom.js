@@ -1,9 +1,9 @@
 function toggleSignup() {
     $("#login_form").hide();
-    $("#signup_form").show();
+    $("#signup_form").fadeIn();
 }
 
 function toggleLogin() {
-    $("#login_form").show();
+    $("#login_form").fadeIn();
     $("#signup_form").hide();
 }

@@ -60,13 +60,13 @@ ActiveRecord::Schema.define(version: 20150628035955) do
     t.integer  "numLicenses"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "Course_id"
+    t.integer  "course_id"
   end
 
   add_index "organizations", ["Course_id"], name: "index_organizations_on_Course_id"
 
   create_table "quiz_questions", force: :cascade do |t|
-    t.integer  "Quiz_id"
+    t.integer  "quiz_id"
     t.string   "question"
     t.string   "correct_answer"
     t.datetime "created_at",     null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20150628035955) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string   "name"
-    t.integer  "Chapter_id"
+    t.integer  "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

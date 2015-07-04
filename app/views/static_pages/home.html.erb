@@ -21,7 +21,6 @@
 
           </ul>
           <div class="card-content black-text" id="login_form">
-            <span class="card-title" style="color: black">Log In</span>
 
             <%= form_for(:session, url: login_path) do |f| %>
 
@@ -45,7 +44,8 @@
             <% end %>
           </div>
           <div class="card-content black-text" id="signup_form" style="display:none">
-            <%= form_for (Organization.new) do |organization_form| %>
+            <%= form_for (org=Organization.new) do |organization_form| %>
+                <%org.users.build%>
                 <%= render 'shared/error_messages' %>
 
 
