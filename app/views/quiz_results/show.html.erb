@@ -8,7 +8,8 @@
       <%else%>
       <h3 style="color:red">You failed.</h3>
       <h3 style="color:red">You got <%=@quiz_result.score%> / 5</h3>
-      <h3><%= link_to "Click here to retake", @quiz_result.quiz%></h3>
+      <h3><%= link_to "Review", Chapter.find_by(id:@quiz_result.quiz.Chapter_id).sections.first%></h3>
+      <h3><%= link_to "Retake", @quiz_result.quiz%></h3>
       <%end%>
 
 </div>
