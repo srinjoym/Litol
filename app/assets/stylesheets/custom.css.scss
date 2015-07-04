@@ -1,14 +1,14 @@
-//@import "bootstrap-sprockets";
-//@import "bootstrap";
+
 @import "materialize/components/color";
-$primary-color: color("grey", "lighten-2") !default;
-$secondary-color: color(" blue-grey", "darken-1") !default;
+$primary-color: color("blue-grey", "lighten-5") !default;
+$secondary-color: color("amber", "") !default;
 @import "materialize";
+
 
 
 /* universal */
 .btn{
-  @extend .grey, .darken-1;
+  @extend .orange;
 }
 
 section {
@@ -219,7 +219,7 @@ main {
 .section{
   height: 92.5vh;
 background-size: 100%;
-background-image: url(asset_path('cover.jpg'));
+//background-image: url(asset_path('cover1.jpg'));
 }
 
 .btn{

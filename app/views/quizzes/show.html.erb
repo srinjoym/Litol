@@ -28,7 +28,9 @@
               <%= label_tag question.id.to_s+'_d', question.answer_choices.find_by(letter:"d").answer %>
             </div>
     <% end %>
-    <%= submit_tag "Done" %>
+    <div class="col s3 offset-s9">
+        <%= submit_tag "Done",:class => "btn" %>
+    </div>
 </ol>
 
     <% end %>

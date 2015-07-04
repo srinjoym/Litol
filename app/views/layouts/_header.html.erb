@@ -1,36 +1,34 @@
-   <div class = "navbar-fixed">
-    <nav>
-      <div class = "nav-wrapper container">
-        <%= link_to image_tag("AtsaLogo.png", alt: "ATSA"),
-                    root_path, class: "brand-logo"%>
 
-      <ul id = "nav-mobile" class="right hide-on-med-and-down">
+<nav>
+    <div class="nav-wrapper container">
+      <%= link_to image_tag("AtsaLogo.png", alt: "ATSA"),
+                  root_path, class: "brand-logo" %>
 
-        <li><%= link_to "Home", root_path %></li>
-        
+      <ul class="right hide-on-med-and-down">
         <% if logged_in? %>
-          <li><%= link_to "Courses", courses_path %></li>
+            <li><%= link_to "Courses", courses_path,method: "GET" %></li>
             <% if admin?(current_user) %>
-                <li><%= link_to "Organization", current_user.organization %></li>
+                <li><%= link_to "Organization", current_user.organization,method: "GET" %></li>
             <%end%>
-
-            <li><a class="dropdown-button" href="" data-activates="dropdown1">Account<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-            <ul id="dropdown1" class = "dropdown-content">
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
+            <li>
+              <a class="dropdown-button"  href="" data-activates="list">Account<i class="mdi-navigation-arrow-drop-down right"></i></a>
+            </li>
+            <ul id="list" class="dropdown-content">
+              <li><%= link_to "Profile", current_user,method: "GET" %></li><li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
+
             </ul>
 
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
-          <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Home", root_path ,method: "GET"%></li>
+            <li><%= link_to "Log in", login_path,method: "GET" %></li>
+            <li><%= link_to "Sign Up", signup_path ,method: "GET"%></li>
         <% end %>
       </ul>
-          </div>
-    </nav>
-</div>
+    </div>
+  </nav>
+
 
 

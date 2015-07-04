@@ -1,0 +1,2 @@
+module UserMilestonesHelper
+end

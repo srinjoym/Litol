@@ -1,3 +1,4 @@
+require 'roo'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -9,61 +10,35 @@
 #              description: "Best course on the internet",
 #              imageSource:"Course2.png")
 #
+chapterSheet = Roo::Excelx.new("Chapters.xlsx")
+chapterSheet.parse(:clean => true)
+courseSheet = Roo::Excelx.new("Courses.xlsx")
+courseSheet.parse(:clean => true)
+sectionSheet = Roo::Excelx.new("Sections.xlsx")
+sectionSheet.parse(:clean => true)
+quizSheet = Roo::Excelx.new("Quizzes.xlsx")
+quizSheet.parse(:clean => true)
+quizQuestionSheet = Roo::Excelx.new("QuizQuestions.xlsx")
+quizQuestionSheet.parse(:clean => true)
+answerChoicesSheet = Roo::Excelx.new("AnswerChoices.xlsx")
+answerChoicesSheet.parse(:clean => true)
 
-Course.create!(name:  "Crash Course Astronomy",
-               description: "A guided tour of the entire universe.",
-               imageSource: "assets/Course1.png")
 
-4.times do |n|
-  name  = Faker::Name.name
-  description = "Best course on the internet"
-  imageSource = "Course"+n.to_s+".png"
-  Course.create!(name:  name,
-               description: description,
-               imageSource: imageSource)
+courseSheet.each_row_streaming do |row|
+  Course.create!(name: row[0].value, description: row[1].value, imageSource:row[2].value)
 end
-
-Chapter.create!(name:  "Astronomy Chapter 1",
-                order: 1,
-                overview: "Astronomy Basics",
-                course_id:Course.first.id)
-
-5.times do |n|
-  order=n+2
-  name  = "Chapter "+(n+2).to_s
-  overview = ((n+2).ordinalize) + " Chapter"
-  course_id = Course.first.id
-  Chapter.create!(name:  name,
-                 order: order,
-                 overview: overview,
-                  course_id:course_id)
+chapterSheet.each_row_streaming do |row|
+  Chapter.create!(id:row[0].value,name:row[1].value, overview:row[2].value, course_id:row[3].value, order: row[4].value)
 end
-
-
-
-Section.create!(name:  "Introduction to Astronomy: Crash Course Astronomy #1",
-
-                content: "https://www.youtube.com/embed/0rHUDWjR5gg?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
-                contentType:"vid",
-                chapter_id:Chapter.first.id,order:1)
-
-Section.create!(name:  "Naked Eye Observations: Crash Course Astronomy #2",
-
-                content: "https://www.youtube.com/embed/L-Wtlev6suc?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
-                contentType:"vid",
-                chapter_id:Chapter.first.id,order:2)
-Section.create!(name:  "Cycles in the Sky: Crash Course Astronomy #3",
-
-                content: "https://www.youtube.com/embed/01QWC-rZcfE?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
-                contentType:"vid",
-                chapter_id:Chapter.first.id,order:3)
-Section.create!(name:  "Moon Phases: Crash Course Astronomy #4",
-
-                content: "https://www.youtube.com/embed/AQ5vty8f9Xc?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
-                contentType:"vid",
-                chapter_id:Chapter.first.id,order:4)
-Section.create!(name:  "Eclipses: Crash Course Astronomy #5",
-
-                content: "https://www.youtube.com/embed/PRgua7xceDA?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL",
-                contentType:"vid",
-                chapter_id:Chapter.first.id,order:5)
+sectionSheet.each_row_streaming do |row|
+  Section.create!(name:row[0].value, content:row[1].value, contentType:row[2].value, chapter_id: row[3].value,order: row[4].value)
+end
+quizSheet.each_row_streaming do |row|
+  Quiz.create!(id:row[0].value, name:row[1].value, Chapter_id:row[2].value)
+end
+quizQuestionSheet.each_row_streaming do |row|
+  QuizQuestion.create!(id:row[0].value, Quiz_id:row[1].value, question:row[2].value, correct_answer: row[3].value)
+end
+answerChoicesSheet.each_row_streaming do |row|
+  AnswerChoice.create!(id:row[0].value, quiz_question_id:row[1].value, answer:row[2].value, letter: row[3].value)
+end

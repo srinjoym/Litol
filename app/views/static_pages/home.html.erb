@@ -1,19 +1,91 @@
 <% provide(:title, "Home") %>
-<div class="section center valign-wrapper">
 
-	<div class="container">
-
+<div class="section center valign-wrapper ">
 
 
-      <div class = "row">
+  <div class="container">
+
+    <div class="row">
+      <div style="margin-bottom: 40px" class="col s12 m12">
         <h1>Never stop Learning.</h1>
-
-        <h2>
-          Imagine Dragons
-        </h2>
-
-		<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
       </div>
+      <div class="col s7">
+        <img class="responsive-img" src="assets/laptop-blank.png">
       </div>
+      <div class="col s5">
+        <div class="card blue-grey lighten-5">
+          <ul class="tabs blue-grey lighten-5">
+            <li class="tab col s3"><a class="active" style="color:black;" href="#" onclick="toggleLogin()">Login</a></li>
+            <li class="tab col s3"><a style="color: black"  href="#" onclick="toggleSignup()">Sign Up</a>
+            </li>
+
+          </ul>
+          <div class="card-content black-text" id="login_form">
+            <span class="card-title" style="color: black">Log In</span>
+
+            <%= form_for(:session, url: login_path) do |f| %>
+
+                <div class="input-field col s12" style="height: 3rem">
+                  <%= f.label :email %>
+                  <%= f.email_field :email, class: 'form-control' %>
+                </div>
+                <div class="input-field col s12" style="height: 3rem">
+                  <%= f.label :password %>
+                  <%= f.password_field :password, class: 'form-control' %>
+                </div>
+
+                <p>
+                  <%= f.check_box :remember_me, type: "checkbox" %>
+                  <%= f.label :remember_me do %>
+                      <span>Remember me on this computer</span>
+                      </p>
+                  <% end %>
+
+                  <%= f.submit "Log in", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+          <div class="card-content black-text" id="signup_form" style="display:none">
+            <%= form_for (Organization.new) do |organization_form| %>
+                <%= render 'shared/error_messages' %>
+
+
+                <div class="input-field col s12" style="height: 3rem">
+                  <%= organization_form.text_field :organizationName, class: "validate" %>
+                  <%= organization_form.label :organizationName, "Institution Name" %>
+                </div>
+
+                <div class="input-field col s12" style="height: 3rem">
+                  <%= organization_form.label :licenseKey, "License Key" %>
+                  <%= organization_form.text_field :licenseKey, class: 'input-field' %>
+                </div>
+                <%= organization_form.fields_for :users do |user_form| %>
+                    <div class="input-field col s12" style="height: 3rem">
+                      <%= user_form.label :name, "Admin Name" %>
+                      <%= user_form.text_field :name, class: 'input-field' %>
+                    </div>
+                    <div class="input-field col s12" style="height: 3rem">
+                      <%= user_form.label :email %>
+                      <%= user_form.email_field :email, class: 'input-field' %>
+                    </div>
+                    <div class="input-field col s12" style="height: 3rem">
+                      <%= user_form.label :password %>
+                      <%= user_form.password_field :password, class: 'input-field' %>
+                    </div>
+                    <div class="input-field col s12" style="height: 3rem">
+                      <%= user_form.label :password_confirmation, "Confirmation" %>
+                      <%= user_form.password_field :password_confirmation, class: 'input-field' %>
+                    </div>
+                <% end %>
+
+                <%= organization_form.submit "Create my account", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
+</div>
+</div>
 

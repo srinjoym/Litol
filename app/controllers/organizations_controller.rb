@@ -7,6 +7,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
     @organization.numLicenses = 5
+
     @organization.users[0].clearance=2
     if @organization.save
       log_in @organization.users[0]
