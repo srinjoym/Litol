@@ -6,15 +6,15 @@
 
       <ul class="right hide-on-med-and-down">
         <% if logged_in? %>
-            <li><%= link_to "Courses", courses_path,method: "GET" %></li>
+            <li><%= link_to "Courses", courses_path %></li>
             <% if admin?(current_user) %>
-                <li><%= link_to "Organization", current_user.organization,method: "GET" %></li>
+                <li><%= link_to "Organization", current_user.organization %></li>
             <%end%>
             <li>
               <a class="dropdown-button"  href="" data-activates="list">Account<i class="mdi-navigation-arrow-drop-down right"></i></a>
             </li>
             <ul id="list" class="dropdown-content">
-              <li><%= link_to "Profile", current_user,method: "GET" %></li><li class="divider"></li>
+              <li><%= link_to "Profile", current_user%></li><li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
@@ -22,9 +22,9 @@
             </ul>
 
         <% else %>
-            <li><%= link_to "Home", root_path ,method: "GET"%></li>
-            <li><%= link_to "Log in", login_path,method: "GET" %></li>
-            <li><%= link_to "Sign Up", signup_path ,method: "GET"%></li>
+            <li><%= link_to "Home", root_path%></li>
+            <li><%= link_to "Log in", login_path%></li>
+            <li><%= link_to "Sign Up", signup_path%></li>
         <% end %>
       </ul>
     </div>
