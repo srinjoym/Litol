@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150628035955) do
     t.integer  "course_id"
   end
 
-  add_index "organizations", ["Course_id"], name: "index_organizations_on_Course_id"
+  add_index "organizations", ["Course_id"], name: "index_organizations_on_course_id"
 
   create_table "quiz_questions", force: :cascade do |t|
     t.integer  "quiz_id"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20150628035955) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "quiz_questions", ["Quiz_id"], name: "index_quiz_questions_on_Quiz_id"
+  add_index "quiz_questions", ["Quiz_id"], name: "index_quiz_questions_on_quiz_id"
 
   create_table "quiz_results", force: :cascade do |t|
     t.integer  "active_course_id"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150628035955) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "quizzes", ["Chapter_id"], name: "index_quizzes_on_Chapter_id"
+  add_index "quizzes", ["Chapter_id"], name: "index_quizzes_on_chapter_id"
 
   create_table "sections", force: :cascade do |t|
     t.text     "name"
