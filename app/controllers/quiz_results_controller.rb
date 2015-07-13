@@ -20,7 +20,7 @@ class QuizResultsController < ApplicationController
       passed=true
     end
 
-    @quiz_result = QuizResult.create(quiz_id:@quiz.id, passed:passed, score:@numCorrect,chapter_id:@quiz.chapter_id,time_passed:Time.now)
+    @quiz_result = QuizResult.create(quiz_id:@quiz.id,user_id: current_user.id, passed:passed, score:@numCorrect,chapter_id:@quiz.chapter_id,time_passed:Time.now)
     render 'show'
   end
   def show

@@ -18,8 +18,8 @@ class UsersController < ApplicationController
      @user.organization_id = current_user.organization_id
     @user.clearance=1
     if @user.save
-      flash[:success] = "Welcome to Project Imagine Dragons!"
-      redirect_to @user
+      flash[:success] = @user.name+ " Added"
+      redirect_to current_user.organization
     else
       render 'new'
     end

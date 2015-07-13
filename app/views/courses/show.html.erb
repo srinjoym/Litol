@@ -10,11 +10,11 @@
 
           <div class="card grey lighten-3 small">
 
-            <%if !chapter.quiz.quiz_results.last.nil?%>
+            <%if current_user.quiz_results.find_by(chapter_id:chapter.id)%>
             <div class="progress" style="margin-top:0px">
 
               <div class="determinate" style="
-              <% if chapter.quiz.quiz_results.last.passed%>
+              <% if current_user.quiz_results.find_by(chapter_id:chapter.id).passed%>
                       background-color:green">
               <%else%>
                   background-color:red">

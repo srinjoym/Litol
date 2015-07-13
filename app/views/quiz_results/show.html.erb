@@ -1,16 +1,25 @@
-<div class = "container">
-  <h2><%=@quiz_result.quiz.name%> Results</h2>
+<div class="container">
+  <h2><%= @quiz_result.quiz.name %> Results</h2>
 
-  <% if @quiz_result.passed%>
+  <% if @quiz_result.passed %>
       <h3 style="color:green">You Passed!</h3>
-      <h3 style="color:green">Score: <%=@quiz_result.score%> / 5.</h3>
-      <h3><%= link_to "Click here to go to the next section", Chapter.find_by(id:@quiz_result.chapter_id+1).sections.first%></h3>
-      <%else%>
+
+      <h3 style="color:green">Score: <%= @quiz_result.score %> / 5.</h3>
+
+      <h3>
+        <% if Chapter.find_by(id: @quiz_result.chapter_id+1).order>Chapter.find_by(id: @quiz_result.chapter_id).order %>
+            <%= link_to "Click here to go to the next section", Chapter.find_by(id: @quiz_result.chapter_id+1).sections.first %>
+        <% end %>
+      </h3>
+  <% else %>
       <h3 style="color:red">You failed.</h3>
-      <h3 style="color:red">You got <%=@quiz_result.score%> / 5</h3>
-      <h3><%= link_to "Review", Chapter.find_by(id:@quiz_result.quiz.chapter_id).sections.first%></h3>
-      <h3><%= link_to "Retake", @quiz_result.quiz%></h3>
-      <%end%>
+
+      <h3 style="color:red">You got <%= @quiz_result.score %> / 5</h3>
+
+      <h3><%= link_to "Review", Chapter.find_by(id: @quiz_result.quiz.chapter_id).sections.first %></h3>
+
+      <h3><%= link_to "Retake", @quiz_result.quiz %></h3>
+  <% end %>
 
 </div>
 
