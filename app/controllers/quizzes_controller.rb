@@ -4,6 +4,6 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    @questions = QuizQuestion.all.find_all{|question| question.Quiz_id==@quiz.id}
+    @questions = QuizQuestion.all.find_all{|question| question.quiz_id==@quiz.id}
   end
 end

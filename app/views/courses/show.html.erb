@@ -6,25 +6,44 @@
 
   <div class="row">
     <% @chapters.each do |chapter| %>
-    <div class="col s12 m6">
-      <div class="card grey lighten-3 small">
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><%=chapter.name%> <i class="mdi-navigation-more-vert right"></i></span>
-          <p><%=chapter.overview%></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Sections<i class="mdi-navigation-close right"></i></span>
-          <ol>
-          <% chapter.sections.each do |section| %>
-                <li> <%= link_to section.name, section %></li>
-          <%end%>
-<%if !chapter.quiz.nil?%>
-            <li> <%= link_to chapter.quiz.name, chapter.quiz%></li>
+        <div class="col s12 m6">
+
+          <div class="card grey lighten-3 small">
+
+            <%if !chapter.quiz.quiz_results.last.nil?%>
+            <div class="progress" style="margin-top:0px">
+
+              <div class="determinate" style="
+              <% if chapter.quiz.quiz_results.last.passed%>
+                      background-color:green">
+              <%else%>
+                  background-color:red">
+              <% end %>
+
+              </div>
+            </div>
                 <%end%>
-          </ol>
+
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><%= chapter.name %>
+                <i class="mdi-navigation-more-vert right"></i></span>
+
+              <p><%= chapter.overview %></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Sections<i class="mdi-navigation-close right"></i></span>
+              <ol>
+                <% chapter.sections.each do |section| %>
+                    <li> <%= link_to section.name, section %></li>
+                <% end %>
+                <% if !chapter.quiz.nil? %>
+                    <li> <%= link_to chapter.quiz.name, chapter.quiz %></li>
+                <% end %>
+              </ol>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-        <%end%>
+    <% end %>
   </div>
 </div>
+

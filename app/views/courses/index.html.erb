@@ -1,7 +1,9 @@
 <div class="container">
-  <h2>Current Courses</h2>
+  <% if !@active_courses.first.nil? %>
+      <h2>Current Courses</h2>
+  <% end %>
   <div class="row">
-  <% @active_courses.each do |course| %>
+    <% @active_courses.each do |course| %>
         <div class="col s12 m4">
           <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
@@ -11,17 +13,20 @@
               <span class="card-title" style="color:black"><%= course.name %></span>
             </div>
             <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4"><%= course.name%></span>
+              <span class="card-title grey-text text-darken-4"><%= course.name %></span>
+
               <p><%= course.description %></p>
-                  <%= link_to "Continue", course %>
+              <%= link_to "Continue", course %>
 
             </div>
           </div>
         </div>
 
+    <% end %>
+  </div>
+  <% if !@available_courses.first.nil? %>
+      <h2>Availaible Courses</h2>
   <% end %>
-    </div>
-  <h2>Availaible Courses</h2>
 
   <div class="row">
 
@@ -36,13 +41,14 @@
               <span class="card-title" style="color:black"><%= course.name %></span>
             </div>
             <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4"><%= course.name%></span>
+              <span class="card-title grey-text text-darken-4"><%= course.name %></span>
+
               <p><%= course.description %></p>
-              <% if current_user.active_courses.find_by(course_id:course.id)%>
+              <% if current_user.active_courses.find_by(course_id: course.id) %>
                   <%= link_to "Continue", course %>
-                  <%else%>
-              <%= link_to "Start", course %>
-                  <%end%>
+              <% else %>
+                  <%= link_to "Start", course %>
+              <% end %>
             </div>
           </div>
         </div>
