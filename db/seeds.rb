@@ -10,17 +10,17 @@ require 'roo'
 #              description: "Best course on the internet",
 #              imageSource:"Course2.png")
 #
-chapterSheet = Roo::Excelx.new("./app/assets/data/Chapters.xlsx")
+chapterSheet = Roo::Excelx.new("Chapters.xlsx")
 chapterSheet.parse(:clean => true)
-courseSheet = Roo::Excelx.new(Rails.root.join("db", "Courses.xlsx"))
+courseSheet = Roo::Excelx.new("Courses.xlsx")
 courseSheet.parse(:clean => true)
-sectionSheet = Roo::Excelx.new(Rails.root.join("db", "Sections.xlsx"))
+sectionSheet = Roo::Excelx.new("Sections.xlsx")
 sectionSheet.parse(:clean => true)
-quizSheet = Roo::Excelx.new(Rails.root.join("db", "Quizzes.xlsx"))
+quizSheet = Roo::Excelx.new("Quizzes.xlsx")
 quizSheet.parse(:clean => true)
-quizQuestionSheet = Roo::Excelx.new(Rails.root.join("db", "QuizQuestions.xlsx"))
+quizQuestionSheet = Roo::Excelx.new("QuizQuestions.xlsx")
 quizQuestionSheet.parse(:clean => true)
-answerChoicesSheet = Roo::Excelx.new(Rails.root.join("db", "AnswerChoices.xlsx"))
+answerChoicesSheet = Roo::Excelx.new("AnswerChoices.xlsx")
 answerChoicesSheet.parse(:clean => true)
 
 
