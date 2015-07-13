@@ -10,7 +10,7 @@ require 'roo'
 #              description: "Best course on the internet",
 #              imageSource:"Course2.png")
 #
-chapterSheet = Roo::Excelx.new(Rails.root.join("db", "Chapters.xlsx"))
+chapterSheet = Roo::Excelx.new("./app/assets/data/Chapters.xlsx")
 chapterSheet.parse(:clean => true)
 courseSheet = Roo::Excelx.new(Rails.root.join("db", "Courses.xlsx"))
 courseSheet.parse(:clean => true)
