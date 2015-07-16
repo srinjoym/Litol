@@ -18,6 +18,8 @@ class QuizResultsController < ApplicationController
 
     if(@numCorrect>=3)
       passed=true
+    else
+      passed = false
     end
 
     @quiz_result = QuizResult.create(quiz_id:@quiz.id,user_id: current_user.id, passed:passed, score:@numCorrect,chapter_id:@quiz.chapter_id,time_passed:Time.now)

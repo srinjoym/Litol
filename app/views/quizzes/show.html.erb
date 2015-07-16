@@ -7,8 +7,12 @@
     <%= form_tag new_quiz_quiz_result_url(@quiz), :method => 'get' do %>
   <ol>
     <% @questions.each do |question| %>
+
             <div class ="input-field col s12" style="margin-top:2em" >
-              <li><%= question.question %></li>
+              <li style="font-size: 22px"><%= question.question %></li>
+              <% if !question.imgSource.nil?%>
+                  <img class="materialboxed" height="350" src=<%=asset_path question.imgSource%>>
+              <%end%>
             </div>
             <div class ="input-field col s12" style="">
             <%= radio_button_tag question.id,'a'%>
