@@ -11,7 +11,7 @@
             <div class ="input-field col s12" style="margin-top:2em" >
               <li style="font-size: 22px"><%= question.question %></li>
               <% if !question.imgSource.nil?%>
-                  <img class="materialboxed" height="350" src="<%=asset_path question.imgSource %>">
+                  <img class="materialboxed" height="350" src="<%= image_path(question.imgSource)%>">
               <%end%>
             </div>
             <div class ="input-field col s12" style="">
