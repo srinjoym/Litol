@@ -37,7 +37,11 @@ quizSheet.each_row_streaming do |row|
   Quiz.create!(id:row[0].value, name:row[1].value, chapter_id:row[2].value)
 end
 quizQuestionSheet.each_row_streaming do |row|
-  QuizQuestion.create!(id:row[0].value, quiz_id:row[1].value, question:row[2].value, correct_answer: row[3].value)
+  question=QuizQuestion.create!(id:row[0].value, quiz_id:row[1].value, question:row[2].value, correct_answer: row[3].value)
+  if !row[4].nil?
+    question.imgSource  = row[4].value
+    question.save
+  end
 end
 answerChoicesSheet.each_row_streaming do |row|
   AnswerChoice.create!(id:row[0].value, quiz_question_id:row[1].value, answer:row[2].value, letter: row[3].value)
