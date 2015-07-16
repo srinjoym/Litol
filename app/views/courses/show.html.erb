@@ -3,47 +3,110 @@
   <h2><%= @course.name %></h2>
 
   <h3>Chapters</h3>
+  <ul class="collapsible" data-collapsible="expandable">
 
-  <div class="row">
-    <% @chapters.each do |chapter| %>
-        <div class="col s12 m6">
+    <li>
+      <div class="collapsible-header active">Current Chapters</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <% @chapters.each do |chapter| %>
 
-          <div class="card grey lighten-3 small">
+              <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id) %>
 
-            <%if chapter.quiz.quiz_results.find_by(user_id:current_user.id)%>
-            <div class="progress" style="margin-top:0px">
+                  <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: false) %>
+                      <div class="col s12 m6">
+                        <div class="card grey lighten-3 small">
+                          <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= chapter.name %>
+                              <i class="mdi-navigation-more-vert right"></i></span>
 
-              <div class="determinate" style="
-              <% if chapter.quiz.quiz_results.find_by(user_id:current_user.id,passed:true)%>
-                      background-color:green">
-              <%else%>
-                  background-color:red">
+                            <p><%= chapter.overview %></p>
+                          </div>
+                          <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Sections<i class="mdi-navigation-close right"></i></span>
+                            <ol>
+                              <% chapter.sections.each do |section| %>
+                                  <li> <%= link_to section.name, section %></li>
+                              <% end %>
+                              <% if !chapter.quiz.nil? %>
+                                  <li> <%= link_to chapter.quiz.name, chapter.quiz %></li>
+                              <% end %>
+                            </ol>
+                          </div>
+                        </div>
+                      </div>
+                  <% end %>
+              <% else %>
+                  <div class="col s12 m6">
+                    <div class="card grey lighten-3 small">
+                      <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= chapter.name %>
+                              <i class="mdi-navigation-more-vert right"></i></span>
+
+                        <p><%= chapter.overview %></p>
+                      </div>
+                      <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Sections<i class="mdi-navigation-close right"></i></span>
+                        <ol>
+                          <% chapter.sections.each do |section| %>
+                              <li> <%= link_to section.name, section %></li>
+                          <% end %>
+                          <% if !chapter.quiz.nil? %>
+                              <li> <%= link_to chapter.quiz.name, chapter.quiz %></li>
+                          <% end %>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
               <% end %>
 
-              </div>
-            </div>
-                <%end%>
-
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4"><%= chapter.name %>
-                <i class="mdi-navigation-more-vert right"></i></span>
-
-              <p><%= chapter.overview %></p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Sections<i class="mdi-navigation-close right"></i></span>
-              <ol>
-                <% chapter.sections.each do |section| %>
-                    <li> <%= link_to section.name, section %></li>
-                <% end %>
-                <% if !chapter.quiz.nil? %>
-                    <li> <%= link_to chapter.quiz.name, chapter.quiz %></li>
-                <% end %>
-              </ol>
-            </div>
-          </div>
+          <% end %>
         </div>
-    <% end %>
-  </div>
+      </div>
+
+    </li>
+
+
+    <li>
+      <div class="collapsible-header">Finished Chapters</div>
+
+      <!-- start collapsible body-->
+      <div class="collapsible-body">
+        <div class="row">
+          <% @chapters.each do |chapter| %>
+              <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id) %>
+                  <div class="col s12 m6">
+                    <div class="card grey lighten-3 small">
+                      <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: true) %>
+                          <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= chapter.name %>
+                              <i class="mdi-navigation-more-vert right"></i></span>
+
+                            <p><%= chapter.overview %></p>
+                          </div>
+                          <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Sections<i class="mdi-navigation-close right"></i></span>
+                            <ol>
+                              <% chapter.sections.each do |section| %>
+                                  <li> <%= link_to section.name, section %></li>
+                              <% end %>
+                              <% if !chapter.quiz.nil? %>
+                                  <li> <%= link_to chapter.quiz.name, chapter.quiz %></li>
+                              <% end %>
+                            </ol>
+                          </div>
+                      <% end %>
+              <% end %>
+              </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- finish body of collapsible-->
+    </li>
+
+
+  </ul>
+
 </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713064434) do
+ActiveRecord::Schema.define(version: 20150713202904) do
 
   create_table "active_courses", force: :cascade do |t|
     t.integer  "user_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150713064434) do
     t.string   "correct_answer"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "imgSource"
   end
 
   add_index "quiz_questions", ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
