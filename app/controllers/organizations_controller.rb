@@ -12,7 +12,7 @@ class OrganizationsController < ApplicationController
     if @organization.save
       log_in @organization.users[0]
       flash[:success] = "Welcome to Project Imagine Dragons!"
-      redirect_to courses_path
+      redirect_to @organization
     else
       render 'new'
     end
