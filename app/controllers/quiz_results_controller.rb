@@ -21,7 +21,9 @@ class QuizResultsController < ApplicationController
     else
       passed = false
     end
-
+    if QuizResult.find_by(user_id:current_user.id)
+    QuizResult.find_by(user_id:current_user.id).destroy
+    end
     @quiz_result = QuizResult.create(quiz_id:@quiz.id,user_id: current_user.id, passed:passed, score:@numCorrect,chapter_id:@quiz.chapter_id,time_passed:Time.now)
     render 'show'
   end
