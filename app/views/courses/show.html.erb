@@ -11,7 +11,7 @@
         <div class="row">
           <% @chapters.each do |chapter| %>
 
-              <% if !chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil? %>
+              <% if !chapter.quiz.nil? && !chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil? %>
 
                   <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: false) %>
                       <div class="col s12 m6">
@@ -79,7 +79,7 @@
       <div class="collapsible-body">
         <div class="row">
           <% @chapters.each do |chapter| %>
-              <% if !chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil? %>
+              <% if !chapter.quiz.nil?&&!chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil? %>
 
                       <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: true) %>
                       <div class="col s12 m6">
