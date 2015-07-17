@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   resources :courses
   resources :chapters
   resources :sections
-  resources :quiz_questions
+  resources :quizzes
   resources :quizzes do
-  resources :quiz_results
+    resources :quiz_results
   end
 
   root             'static_pages#home'
