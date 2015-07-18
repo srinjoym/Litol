@@ -46,7 +46,7 @@
           <div class="card-content black-text" id="signup_form" style="display:none">
             <%= form_for (org=Organization.new) do |organization_form| %>
                 <%org.users.build%>
-                <%= render 'shared/error_messages' %>
+
 
 
                 <div class="input-field col s12" style="height: 3rem">
