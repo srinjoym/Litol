@@ -11,9 +11,8 @@
         <div class="row">
           <% @chapters.each do |chapter| %>
 
-              <% if !chapter.quiz.nil? && !chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil? %>
+              <% if passed?(chapter)==0%>
 
-                  <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: false) %>
                       <div class="col s12 m6">
                         <div class="card grey lighten-3 small">
                           <div class="progress" style="margin-top:0px">
@@ -39,8 +38,8 @@
                           </div>
                         </div>
                       </div>
-                  <% end %>
-              <% else %>
+
+              <% elsif passed?(chapter)==-1 %>
                   <div class="col s12 m6">
                     <div class="card grey lighten-3 small">
 
@@ -79,9 +78,7 @@
       <div class="collapsible-body">
         <div class="row">
           <% @chapters.each do |chapter| %>
-              <% if !chapter.quiz.nil?&&!chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil? %>
-
-                      <% if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: true) %>
+              <% if passed?(chapter)==1%>
                       <div class="col s12 m6">
                         <div class="card grey lighten-3 small">
                           <div class="progress" style="margin-top:0px">
@@ -109,8 +106,6 @@
                   </div>
                   </div>
               <% end %>
-
-          <% end %>
         </div>
       </div>
       <!-- finish body of collapsible-->
