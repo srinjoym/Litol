@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'courses/new'
 
+
   get 'organizations/new'
 
   get 'sessions/new'
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get 'addUsers' => 'organizations#newUsers'
+  get 'editMode' => 'courses#editMode'
+  get 'save'=> 'courses#save'
 
 
 

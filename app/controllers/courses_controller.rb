@@ -18,6 +18,16 @@ class CoursesController < ApplicationController
     @available_courses-=getActiveCourses
   end
 
+  def editMode
+    @available_courses =current_user.organization.courses
+    @active_courses = getActiveCourses
+    @available_courses-=getActiveCourses
+
+  end
+  def save
+
+  end
+
   private
   def getActiveCourses
     @available_courses =current_user.organization.courses

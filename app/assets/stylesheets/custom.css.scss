@@ -322,3 +322,29 @@ nav ul a {
 .determinate{
   width:100%;
 }
+
+.course-edit{
+
+    margin:0px 0px 10px;
+
+  a{
+    width:100px;
+    margin:0 auto;
+  }
+
+}
+#course_name{
+  font-size: 24px;
+}
+textarea#course_description.materialize-textarea{
+  height: 1000px;
+}
+
+.course-save{
+  margin:0px 0px 10px;
+
+  a{
+    width:100px;
+    margin:0 auto;
+  }
+}
