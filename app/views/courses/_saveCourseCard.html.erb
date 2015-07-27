@@ -1,0 +1,22 @@
+<div class="col s12 m4">
+  <div class="card medium">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src=<%= asset_path course.imageSource %>>
+    </div>
+    <%= form_tag course_save_path(course.id) , :html =>{ :class => "chapter_edit_card" } do %>
+    <div class="card-content">
+      <span class="card-title" style="color:black">
+        <%= text_field_tag "course_name", value= course.name %>
+        <%= submit_tag "Update" %>
+      </span>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title orange-text text-darken-2"><%= course.name %></span>
+
+      <%= text_area_tag "course_description", content=course.description %>
+      <%= submit_tag "Update" %>
+    </div>
+    <% end %>
+
+  </div>
+</div>

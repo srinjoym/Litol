@@ -341,10 +341,30 @@ textarea#course_description.materialize-textarea{
 }
 
 .course-save{
-  margin:0px 0px 10px;
+  margin:0px 0px  10px;
 
   a{
     width:100px;
     margin:0 auto;
   }
+}
+.no-margin{
+  margin:0;
+}
+
+div.card-content.activator.chapter-card-content{
+  height:auto;
+}
+
+.field_with_errors {
+  display: inline-block;
+}
+
+input#chapter_name.card-field{
+  font-size:24px;
+  width:80%;
+}
+
+textarea#chapter_overview.card-text-area{
+  height:17em;
 }

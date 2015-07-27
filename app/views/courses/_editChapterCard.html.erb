@@ -1,0 +1,25 @@
+<div class="col s12 m6">
+  <div class="card grey lighten-3 small">
+
+    <div class="card-content">
+                            <span class="card-title activator orange-text text-darken-2"><%= chapter.name %>
+                              </span>
+      <% if !chapter.course.default%>
+          <a href="<%= edit_chapter_path(chapter.id)%>" class="btn-medium btn-floating waves-effect waves-light no-margin orange right"><i class="mdi-editor-border-color"></i></a>
+      <%end%>
+      <p><%= chapter.overview %></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title orange-text text-darken-2">Sections<i class="mdi-navigation-close right"></i></span>
+      <ol>
+        <% chapter.sections.each do |section| %>
+            <li> <%= link_to section.name, section %></li>
+        <% end %>
+        <% if !chapter.quiz.nil? %>
+            <li> <%= link_to chapter.quiz.name, chapter.quiz %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>
+

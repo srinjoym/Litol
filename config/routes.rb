@@ -18,8 +18,13 @@ Rails.application.routes.draw do
 
   resources :organizations
   resources :users
-  resources :courses
-  resources :chapters
+  resources :courses do
+    post 'save'=> 'courses#save'
+  end
+
+  resources :chapters do
+    post 'save'=> 'chapters#save'
+  end
   resources :sections
   resources :quizzes
   resources :quizzes do
@@ -36,7 +41,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get 'addUsers' => 'organizations#newUsers'
   get 'editMode' => 'courses#editMode'
-  get 'save'=> 'courses#save'
+
 
 
 

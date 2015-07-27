@@ -1,0 +1,33 @@
+<div class="col s12 m6">
+  <div class="card grey lighten-3 small activator">
+      <%= form_tag chapter_save_path(chapter.id), :html => {:class => "chapter_edit_card"} do %>
+          <div class="card-content activator chapter-card-content">
+            <span class="card-title activator grey-text text-darken-4">
+              <%= text_field_tag "chapter_name", value= chapter.name, class: "card-field" %>
+            </span>
+            <%= button_tag(:class => "orange btn-medium btn-floating right") do %>
+                <i class="mdi-content-save"></i>
+            <% end %>
+            <%= text_area_tag "chapter_overview", content=chapter.overview, class: "card-text-area materialize-textarea" %>
+          </div>
+
+          <div class="card-reveal">
+          <span class="card-title orange-text text-darken-2">Sections
+            <i class="mdi-navigation-close right"></i>
+            <%= button_tag(:class => "orange btn-medium btn-floating right") do %>
+                <i class="mdi-content-save"></i>
+            <% end %>
+          </span>
+          <ol>
+            <% chapter.sections.each do |section| %>
+                <li><%= text_field_tag "section"+section.id.to_s+"_name", value= section.name %></li>
+            <% end %>
+            <% if !chapter.quiz.nil? %>
+                <li><%= text_field_tag "quiz_name", value= chapter.quiz.name %></li>
+            <% end %>
+          </ol>
+          </div>
+      <% end %>
+
+      </div>
+</div>
