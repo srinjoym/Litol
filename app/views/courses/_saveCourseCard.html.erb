@@ -6,15 +6,24 @@
     <%= form_tag course_save_path(course.id) , :html =>{ :class => "chapter_edit_card" } do %>
     <div class="card-content">
       <span class="card-title" style="color:black">
-        <%= text_field_tag "course_name", value= course.name %>
-        <%= submit_tag "Update" %>
+        <%= text_field_tag "course_name", value= course.name, class:"card-field" %>
+        <%= button_tag(:class => "orange btn-medium btn-floating right") do %>
+                <i class="mdi-content-save"></i>
+
+            <% end %>
       </span>
     </div>
     <div class="card-reveal">
-      <span class="card-title orange-text text-darken-2"><%= course.name %></span>
+      <span class="card-title orange-text text-darken-2"><%= course.name %>
+        <i class="mdi-navigation-close right"></i>
 
-      <%= text_area_tag "course_description", content=course.description %>
-      <%= submit_tag "Update" %>
+      </span>
+
+      <%= text_area_tag "course_description", content=course.description, class:"text-area" %>
+      <%= button_tag(:class => "orange btn-medium btn-floating right") do %>
+          <i class="mdi-content-save"></i>
+      <% end %>
+
     </div>
     <% end %>
 
