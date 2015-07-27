@@ -10,23 +10,32 @@
       <div class="collapsible-body">
         <div class="row">
           <% @chapters.each do |chapter| %>
-              <% if passed?(chapter)==0 %>
+              <% if @edit_chapter==chapter %>
+                  <%= render 'courses/modifyChapterCard', chapter: chapter %>
+
+              <% elsif passed?(chapter)==0 %>
                   <%= render 'courses/failChapterCard', chapter: chapter %>
               <% elsif passed?(chapter)==-1 %>
-                  <%= render 'courses/editChapterCard', chapter: chapter %>
+                  <%= render 'courses/chapterCard.html.erb', chapter: chapter %>
               <% end %>
           <% end %>
         </div>
       </div>
+
     </li>
+
 
     <li>
       <div class="collapsible-header">Finished Chapters</div>
+
+      <!-- start collapsible body-->
       <div class="collapsible-body">
         <div class="row">
           <% @chapters.each do |chapter| %>
-              <% if passed?(chapter)==1 %>
-                  <%= render 'courses/passChapterCard', chapter: chapter %>
+              <% if @edit_chapter==chapter %>
+                  <%= render 'courses/chapterCard.html.erb', chapter: chapter %>
+              <% elsif passed?(chapter)==1 %>
+                  <%= render 'courses/chapterCard.html.erb', chapter: chapter %>
               <% end %>
           <% end %>
         </div>

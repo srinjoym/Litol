@@ -25,7 +25,7 @@ answerChoicesSheet.parse(:clean => true)
 
 
 courseSheet.each_row_streaming do |row|
-  Course.create!(name: row[0].value, description: row[1].value, imageSource:row[2].value)
+  Course.create!(name: row[0].value, description: row[1].value, imageSource:row[2].value, default:row[3].value)
 end
 chapterSheet.each_row_streaming do |row|
   Chapter.create!(id:row[0].value,name:row[1].value, overview:row[2].value, course_id:row[3].value, order: row[4].value)

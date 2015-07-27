@@ -3,5 +3,6 @@
   <component name="dataSourceStorageLocal">
     <data-source name="Rails ImagineDragons: development" uuid="5ef37cf3-bc23-4c13-9257-8332751f49c1" />
     <data-source name="Rails ImagineDragons: test" uuid="b13565c6-6a2a-4357-a9be-eb464e0c00cc" />
+    <data-source name="Rails ImagineDragons: production" uuid="e07aa8a4-d226-4491-9061-a5c0ebc630c5" />
   </component>
 </project>

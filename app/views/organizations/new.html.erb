@@ -6,33 +6,30 @@
     <div class="col s12">
       <%= form_for (@organization) do |organization_form| %>
       <%= render 'shared/organization_error_messages' %>
-
-
         <div class ="input-field col s12" style="height: 3rem">
           <%= organization_form.text_field :organizationName, class: "validate" %>
           <%= organization_form.label :organizationName, "Institution Name" %>
         </div>
-
           <div class ="input-field col s12" style="height: 3rem">
             <%= organization_form.label :licenseKey, "License Key" %>
-            <%= organization_form.text_field :licenseKey, class: 'input-field' %>
+            <%= organization_form.text_field :licenseKey, class: 'input-field', class: "validate"  %>
           </div>
           <%= organization_form.fields_for :users do |user_form| %>
           <div class ="input-field col s12" style="height: 3rem">
-                <%= user_form.label :name, "Admin Name" %>
-                <%= user_form.text_field :name, class: 'input-field' %>
+                <%= user_form.label :name, "Admin Name", class: "validate" %>
+                <%= user_form.text_field :name, class: 'input-field' , class: "validate" %>
           </div>
               <div class ="input-field col s12" style="height: 3rem">
-                <%= user_form.label :email %>
-                <%= user_form.email_field :email, class: 'input-field' %>
+                <%= user_form.label :email, "Email", class: "validate" %>
+                <%= user_form.email_field :email, class: 'input-field' , class: "validate" %>
               </div>
               <div class ="input-field col s12" style="height: 3rem">
-                <%= user_form.label :password %>
-                <%= user_form.password_field :password, class: 'input-field' %>
+                <%= user_form.label :password, "Password" %>
+                <%= user_form.password_field :password, class: 'input-field' , class: "validate" %>
               </div>
               <div class ="input-field col s12" style="height: 3rem">
                 <%= user_form.label :password_confirmation, "Confirmation" %>
-                <%= user_form.password_field :password_confirmation, class: 'input-field' %>
+                <%= user_form.password_field :password_confirmation, class: 'input-field' , class: "validate" %>
               </div>
   <% end %>
 
