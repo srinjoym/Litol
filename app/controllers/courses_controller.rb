@@ -2,12 +2,18 @@ class CoursesController < ApplicationController
   def new
   end
 
+  def create
+    @oldCourse = Course.find_by
+    @course = Course.new(course_params)
+
+  end
+
   def show
     @course = Course.find(params[:id])
     @chapters = @course.chapters
-    if (current_user.active_courses.find_by(course_id:@course.id).nil?)
-    @active_course = ActiveCourse.new(user_id: current_user.id, course_id: @course.id, certification_complete: false)
-    @active_course.save
+    if (current_user.active_courses.find_by(course_id: @course.id).nil?)
+      @active_course = ActiveCourse.new(user_id: current_user.id, course_id: @course.id, certification_complete: false)
+      @active_course.save
     end
   end
 
@@ -24,41 +30,41 @@ class CoursesController < ApplicationController
     @available_courses-=getActiveCourses
 
   end
-  def save
-    @available_courses =current_user.organization.courses
-    @active_courses = getActiveCourses
-    @available_courses-=getActiveCourses
-    course = Course.find_by(id:params[:course_id])
-    if params[:course_description]!=course.description||params[:course_name]!=course.name
-      if course.default
-      return
-      else
-        newCourse = course
-      end
 
-      # newCourse =  Course.find_by(id:params[:course_id]).dup
-      # newCourse.chapters.dup
-      # newCourse.chapters.sections.dup
-      newCourse.name = params[:course_name]
-      newCourse.description= params[:course_description]
-      newCourse.save
-      current_user.organization.courses.delete(course)
-      current_user.organization.courses << newCourse
+  def save
+    @oldCourse = Course.find(params[:course_id])
+    if !@oldCourse.default
+      Course.destroy(@oldCourse.id)
+      @newCourse = Course.new(course_params)
+      @newCourse.id = @oldCourse.id
+      @newCourse.chapters = @oldCourse.chapters
+      @newCourse.chapters.each do |chapter|
+        chapter.sections = @oldCourse.chapters.find_by(id: chapter.id).sections
+      end
+      @newCourse.default=false
+      if @newCourse.imageSource.nil?
+        @newCourse.imageSource=@oldCourse.imageSource
+      end
+      @newCourse.save
+      current_user.organization.courses << @newCourse
     end
 
     redirect_to courses_path
   end
-def edit
-  @available_courses =current_user.organization.courses
-  @active_courses = getActiveCourses
-  @available_courses-=getActiveCourses
-  @editCourse = Course.find_by id:params[:id]
-end
+
+  def edit
+
+    @available_courses =current_user.organization.courses
+    @active_courses = getActiveCourses
+    @available_courses-=getActiveCourses
+    @editCourse = Course.find_by id: params[:id]
+    @course= Course.new
+  end
 
   private
 
   def cloneCourse (course)
-    newCourse =  course.dup
+    newCourse = course.dup
 
     course.chapters.each do |chapter|
       newChapter= chapter.dup
@@ -80,13 +86,16 @@ end
     @available_courses =current_user.organization.courses
     @active_courses = Array.new
     current_user.active_courses.each do |active_course|
-      if !@available_courses.find_by(id:active_course.course_id).nil?
+      if !@available_courses.find_by(id: active_course.course_id).nil?
         @active_courses.push @available_courses.find_by(id: active_course.course_id)
       end
     end
     return @active_courses
   end
 
+  def course_params
+    params.require(:course).permit(:photo, :name, :description)
+  end
 
 
 end
