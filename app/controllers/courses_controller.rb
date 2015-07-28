@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
         chapter.sections = @oldCourse.chapters.find_by(id: chapter.id).sections
       end
       @newCourse.default=false
-      if @newCourse.photo.nil?
+      if params[:photo].nil?
         @newCourse.imageSource=@oldCourse.imageSource
       end
       @newCourse.save
