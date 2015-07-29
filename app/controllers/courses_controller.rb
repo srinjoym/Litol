@@ -33,6 +33,13 @@ class CoursesController < ApplicationController
 
   def save
     @oldCourse = Course.find(params[:course_id])
+    i=0
+    current_user.organization.courses.each do|course|
+      if course == @oldCourse
+        break
+      end
+      i=i+1
+    end
     if !@oldCourse.default
      
       @newCourse = Course.new(course_params)
@@ -50,16 +57,17 @@ class CoursesController < ApplicationController
         end
 
       end
-      Course.destroy(@oldCourse.id)
+
+      current_user.organization.courses[i] = @newCourse
+      Course.delete(@oldCourse.id)
       @newCourse.save
-      current_user.organization.courses << @newCourse
+
     end
 
     redirect_to courses_path
   end
 
   def edit
-
     @available_courses =current_user.organization.courses
     @active_courses = getActiveCourses
     @available_courses-=getActiveCourses
