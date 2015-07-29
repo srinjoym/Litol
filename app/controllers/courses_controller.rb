@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   def save
     @oldCourse = Course.find(params[:course_id])
     if !@oldCourse.default
-      Course.destroy(@oldCourse.id)
+     
       @newCourse = Course.new(course_params)
       @newCourse.id = @oldCourse.id
       @newCourse.chapters = @oldCourse.chapters
@@ -42,9 +42,15 @@ class CoursesController < ApplicationController
         chapter.sections = @oldCourse.chapters.find_by(id: chapter.id).sections
       end
       @newCourse.default=false
-      if params[:photo].nil?
-        @newCourse.imageSource=@oldCourse.imageSource
+      if params[:course][:photo].nil?
+        if @oldCourse.photo_file_name.nil?
+          @newCourse.imageSource=@oldCourse.imageSource
+        else
+          @newCourse.photo = @oldCourse.photo
+        end
+
       end
+      Course.destroy(@oldCourse.id)
       @newCourse.save
       current_user.organization.courses << @newCourse
     end
