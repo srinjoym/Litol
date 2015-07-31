@@ -11,6 +11,7 @@
     <div class="card-content">
       <span class="card-title activator orange-text text-darken-2"><%= course.name %></span>
 
+      <%if current_user.clearance>1%>
 <% if course.default%>
 
         <a  class="btn-medium btn-floating disabled right no-margin"><i class="mdi-editor-border-color"></i></a>
@@ -18,6 +19,7 @@
           <%else%>
           <a href="<%= edit_course_path(course.id)%>" class="btn-medium btn-floating waves-effect waves-light no-margin orange right"><i class="mdi-editor-border-color"></i></a>
 <%end%>
+          <%end%>
     </div>
     <div class="card-reveal">
       <span class="card-title orange-text text-darken-2 activator"><%= course.name %>
