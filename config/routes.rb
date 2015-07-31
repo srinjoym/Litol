@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   resources :chapters do
     post 'save'=> 'chapters#save'
   end
-  resources :sections
+  resources :sections do
+    post 'saveVideo'=> 'sections#saveVideo'
+  end
   resources :quizzes
   resources :quizzes do
     resources :quiz_results
@@ -41,7 +43,6 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get 'addUsers' => 'organizations#newUsers'
   get 'editMode' => 'courses#editMode'
-
 
 
 

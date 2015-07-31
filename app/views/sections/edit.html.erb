@@ -1,8 +1,13 @@
 <h2 style="margin-bottom: 0px"><%= @section.name %></h2>
-<div class = "container">
-<h5 class="center" style="margin-bottom: 10px; margin-top: 10px;">
-  <a href="<%= edit_section_path %>" class="btn-medium btn-floating waves-effect waves-light no-margin orange"><i class="mdi-editor-border-color"></i></a>
-</h5>
+<div class="container">
+  <%= form_tag section_saveVideo_path(@section.id) do %>
+      <h5 class="center" style="margin-bottom: 10px; margin-top: 10px;">
+       <%= button_tag(:class => "orange btn-medium btn-floating ") do %>
+          <i class="mdi-content-save"></i>
+      <% end %>
+     </h5>
+      <%= text_field_tag "vidURL", @section.content %>
+      <% end %>
 </div>
 <div class="valign-wrapper">
 
@@ -36,7 +41,7 @@
 </div>
 <div class="container">
   <h3 class="left-align"><a style="color:<%if passed?(@section.chapter)==1%> green"
-  <% elsif passed?(@section.chapter)==0 %>red"
+                            <% elsif passed?(@section.chapter)==0 %>red"
   <% else %>grey"
   <% end %>href="<%= polymorphic_path @section.chapter.course %>
   "><i class="mdi-navigation-chevron-left"> </i><%= @section.chapter.name %> </a></h3>
