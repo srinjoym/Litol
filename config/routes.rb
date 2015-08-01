@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :users
   resources :courses do
     post 'save'=> 'courses#save'
+    get 'createTempChapter'=> 'chapters#createTempChapter'
   end
 
   resources :chapters do
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get 'addUsers' => 'organizations#newUsers'
   get 'editMode' => 'courses#editMode'
+  get 'createTempCourse'=> 'courses#createTempCourse'
 
 
 

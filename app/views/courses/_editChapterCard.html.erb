@@ -16,6 +16,7 @@
         <% chapter.sections.each do |section| %>
             <li> <%= link_to section.name, section %></li>
         <% end %>
+
         <% if !chapter.quiz.nil? %>
             <li> <%= link_to chapter.quiz.name, chapter.quiz %></li>
         <% end %>

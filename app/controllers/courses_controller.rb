@@ -17,11 +17,18 @@ class CoursesController < ApplicationController
     end
   end
 
+  def createTempCourse
+    newCourse  = Course.create(name:"Create New Course", description: "Enter Description Here", imageSource:"NewCourse.png", default:false)
+
+    current_user.organization.courses << newCourse
+    redirect_to edit_course_path newCourse.id
+  end
 
   def index
     @available_courses =current_user.organization.courses
     @active_courses = getActiveCourses
     @available_courses-=getActiveCourses
+    @temp_course = Course.find_by(name:"Create New Course")
   end
 
   def editMode

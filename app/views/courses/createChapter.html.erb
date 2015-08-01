@@ -1,26 +1,33 @@
 <div class="container">
+
   <% if !@active_courses.first.nil? %>
       <h2 style="margin-bottom:10px">Current Courses</h2>
   <% end %>
 
   <div class="row">
-
     <% @active_courses.each do |course| %>
-        <%= render 'courses/editCourseCard', course:course%>
+        <% if @editCourse==course %>
+            <%= render 'courses/createChapterCard', course:course %>
+        <% else %>
+            <%= render 'courses/courseCard', course: course %>
+        <% end %>
     <% end %>
   </div>
+
   <% if !@available_courses.first.nil? %>
       <h2>Availaible Courses</h2>
   <% end %>
 
   <div class="row">
-
-
     <% @available_courses.each do |course| %>
-        <%= render 'courses/editCourseCard', course:course%>
+    <% if @editCourse==course %>
+        <%= render 'courses/createChapterCard', course:course %>
+    <% else %>
+        <%= render 'courses/courseCard', course: course %>
     <% end %>
-    <%= render 'courses/disabledCourseCard'%>
+        <%end%>
   </div>
+
 
 
 </div>

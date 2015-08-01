@@ -20,13 +20,10 @@
             <% end %>
           </span>
           <ol>
-            <% chapter.sections.each do |section| %>
-                <li><%= text_field_tag "section"+section.id.to_s+"_name", value= section.name %></li>
+            <% for i in 1..5 %>
+                <li><%= text_field_tag "section"+i.to_s+"_name", value= section.name %></li>
             <% end %>
 
-            <% if !chapter.quiz.nil? %>
-                <li><%= text_field_tag "quiz_name", value= chapter.quiz.name %></li>
-            <% end %>
           </ol>
           </div>
       <% end %>
