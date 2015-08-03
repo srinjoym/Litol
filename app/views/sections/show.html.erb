@@ -2,7 +2,7 @@
 <div class = "container">
   <% if current_user.clearance>1%>
 <h5 class="center" style="margin-bottom: 10px; margin-top: 10px;">
-  <a href="<%= edit_section_path %>" class="btn-medium btn-floating waves-effect waves-light no-margin orange"><i class="mdi-editor-border-color"></i></a>
+  <a href="<%= edit_section_path %>" class="btn-medium btn-floating waves-effect waves-light no-margin orange tooltipped" data-tooltip="Edit Section" data-delay="0" data-position="left"><i class="mdi-editor-border-color"></i></a>
 </h5>
       <%end%>
 </div>

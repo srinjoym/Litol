@@ -32,6 +32,6 @@ class SectionsController < ApplicationController
       youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
       youtube_id = $5
     end
-    "http://www.youtube.com/embed/#{ youtube_id }"
+    "https://www.youtube.com/embed/#{ youtube_id }"
     end
 end
