@@ -17,7 +17,7 @@
         <a  class="btn-medium btn-floating disabled right no-margin"><i class="mdi-editor-border-color"></i></a>
           <br><h6 style = "color:grey; font-style: italic">Default Course</h6>
           <%else%>
-          <a href="<%= edit_course_path(course.id)%>" class="btn-medium btn-floating waves-effect waves-light no-margin orange right"><i class="mdi-editor-border-color"></i></a>
+          <a href="<%= edit_course_path(course.id)%>" class="btn-medium btn-floating waves-effect waves-light no-margin orange right tooltipped" data-delay="0"data-tooltip="Edit Course"><i class="mdi-editor-border-color"></i></a>
 <%end%>
           <%end%>
     </div>
