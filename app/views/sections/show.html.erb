@@ -40,6 +40,6 @@
   <h3 class="left-align"><a style="color:<%if passed?(@section.chapter)==1%> green"
   <% elsif passed?(@section.chapter)==0 %>red"
   <% else %>grey"
-  <% end %>href="<%= polymorphic_path @section.chapter.course %>
-  "><i class="mdi-navigation-chevron-left"> </i><%= @section.chapter.name %> </a></h3>
+  <% end %>href="<%= polymorphic_path @section.chapter.course %>"
+  <i class="mdi-navigation-chevron-left"> </i><%= @section.chapter.name %> </a></h3>
 </div>
