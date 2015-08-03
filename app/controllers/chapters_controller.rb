@@ -39,7 +39,7 @@ class ChaptersController < ApplicationController
         maxOrder = chapter.order
       end
     end
-    newChapter = Chapter.create(name:"New Chapter",overview:"Enter Chapter Overview",course_id:course_id, order:maxOrder+1)
+    newChapter = Chapter.create(name:"New Chapter",overview:"Enter Chapter Overview",course_id:course_id, order:maxOrder+1,id:Chapter.all.last.id+1)
     for i in 1..5
       newChapter.sections << Section.create(name:"Section "+i.to_s, contentType:"vid",chapter_id: newChapter.id,order:i, content:"Enter Link Here")
     end

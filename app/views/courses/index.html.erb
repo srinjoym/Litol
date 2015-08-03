@@ -6,7 +6,7 @@
   <div class="row">
 
     <% @active_courses.each do |course| %>
-        <%= render 'courses/editCourseCard', course:course%>
+        <%= render 'courses/editCourseCard', course: course %>
     <% end %>
   </div>
   <% if !@available_courses.first.nil? %>
@@ -17,9 +17,11 @@
 
 
     <% @available_courses.each do |course| %>
-        <%= render 'courses/editCourseCard', course:course%>
+        <%= render 'courses/editCourseCard', course: course %>
     <% end %>
-    <%= render 'courses/disabledCourseCard'%>
+    <% if current_user.clearance>1 %>
+        <%= render 'courses/disabledCourseCard' %>
+    <% end %>
   </div>
 
 

@@ -16,7 +16,9 @@
                   <%= render 'courses/editChapterCard', chapter: chapter %>
               <% end %>
           <% end %>
+          <% if current_user.clearance>1%>
           <%= render 'courses/disabledChapterCard'%>
+              <%end%>
         </div>
       </div>
     </li>
