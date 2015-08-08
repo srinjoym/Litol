@@ -42,7 +42,7 @@ end
 end
 
   def certificate
-
+    @quiz_result= QuizResult.find(params[:id])
   end
 def show
   @quiz_result= QuizResult.find(params[:id])
