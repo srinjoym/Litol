@@ -27,7 +27,7 @@ class QuizResultsController < ApplicationController
     @quiz_result = QuizResult.create(quiz_id: @quiz.id, user_id: current_user.id, passed: passed, score: @numCorrect, chapter_id: @quiz.chapter_id, time_passed: Time.now)
     certified = true
     Chapter.find(@quiz.chapter_id).course.chapters.each do |chapter|
-      if chapter.quiz.quiz_results.last.nil?||!chapter.quiz.quiz_results.last.passed
+      if (!chapter.quiz.nil?&&chapter.quiz.quiz_results.last.nil?)||!chapter.quiz.quiz_results.last.passed
         certified=false
       end
     end
