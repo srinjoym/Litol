@@ -27,26 +27,30 @@ class QuizResultsController < ApplicationController
     @quiz_result = QuizResult.create(quiz_id: @quiz.id, user_id: current_user.id, passed: passed, score: @numCorrect, chapter_id: @quiz.chapter_id, time_passed: Time.now)
     certified = true
     Chapter.find(@quiz.chapter_id).course.chapters.each do |chapter|
-      if (!chapter.quiz.nil?&&chapter.quiz.quiz_results.last.nil?)||!chapter.quiz.quiz_results.last.passed
-        certified=false
+      if !chapter.quiz.nil?
+        if chapter.quiz.quiz_results.last.nil?||!chapter.quiz.quiz_results.last.passed
+          certified=false
+        end
       end
+
     end
     course = ActiveCourse.find_by(course_id: Chapter.find(@quiz.chapter_id).course.id, user_id: current_user.id)
     course.certification_complete=certified
     course.save
-if certified
-  render 'certificate'
-else
-  render 'show'
-end
-end
+    if certified
+      render 'certificate'
+    else
+      render 'show'
+    end
+  end
 
   def certificate
     @quiz_result= QuizResult.find(params[:id])
   end
-def show
-  @quiz_result= QuizResult.find(params[:id])
-end
+
+  def show
+    @quiz_result= QuizResult.find(params[:id])
+  end
 
 end
 
