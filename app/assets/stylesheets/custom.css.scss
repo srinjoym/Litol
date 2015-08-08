@@ -66,9 +66,9 @@ p {
   float: left;
   //margin-right: 10px;
   //padding-top: 9px;
-  margin-top: 0.2em;
+  margin-top: 8px;
   img {
-    width: 150px;
+    width: 130px;
   }
 }
 
@@ -142,6 +142,10 @@ footer {
 }
 
 /* miscellaneous */
+i.mdi-navigation-arrow-drop-down.right{
+  height:55px;
+  line-height: 55px;
+}
 
 .debug_dump {
   clear: both;
@@ -167,14 +171,6 @@ input, textarea, select, .uneditable-input {
     margin: 0 0 30px 0;
   }
 }
-
-//
-//.field_with_errors {
-//  @extend .has-error;
-//  .form-control {
-//    //color: $state-danger-text;
-//  }
-//}
 
 .checkbox {
   margin-top: -10px;
@@ -217,15 +213,18 @@ main {
 .section {
   height: 92.5vh;
   background-size: 100%;
-  //background-image: url(asset_path('cover1.jpg'));
 }
 
 .btn {
   margin-top: 2em;
 }
 
-nav ul a {
-  color: black;
+nav {
+  height:55px;
+  line-height: 55px;
+  ul a {
+    color: black;
+  }
 }
 
 .card span {

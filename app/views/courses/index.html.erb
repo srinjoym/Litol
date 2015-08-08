@@ -1,29 +1,53 @@
 <div class="container">
-  <% if !@active_courses.first.nil? %>
-      <h2 style="margin-bottom:10px">Current Courses</h2>
-  <% end %>
+  <ul class="collapsible" data-collapsible="expandable">
 
-  <div class="row">
 
-    <% @active_courses.each do |course| %>
-        <%= render 'courses/editCourseCard', course: course %>
+    <% if !@active_courses.first.nil? %>
+        <li>
+          <div class="collapsible-header active"><h3 class = "center">Current Courses</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
+              <% @active_courses.each do |course| %>
+                  <%= render 'courses/editCourseCard', course: course %>
+              <% end %>
+              <% if current_user.clearance>1 %>
+                  <%= render 'courses/disabledCourseCard' %>
+              <% end %>
+            </div>
+          </div>
+        </li>
     <% end %>
-  </div>
-  <% if !@available_courses.first.nil? %>
-      <h2>Availaible Courses</h2>
-  <% end %>
-
-  <div class="row">
 
 
-    <% @available_courses.each do |course| %>
-        <%= render 'courses/editCourseCard', course: course %>
+    <% if !@available_courses.first.nil? %>
+        <li>
+          <div class="collapsible-header active"><h3 class = "center">Available Courses</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
+              <% @available_courses.each do |course| %>
+                  <%= render 'courses/editCourseCard', course: course %>
+              <% end %>
+              <% if current_user.clearance>1&& @active_courses.first.nil?  %>
+                  <%= render 'courses/disabledCourseCard' %>
+              <% end %>
+            </div>
+          </div>
+        </li>
     <% end %>
-    <% if current_user.clearance>1 %>
-        <%= render 'courses/disabledCourseCard' %>
+    <% if !@finished_courses.first.nil? %>
+        <li>
+          <div class="collapsible-header"><h3 class = "center">Finished Courses</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
+              <% @finished_courses.each do |course| %>
+                  <%= render 'courses/editCourseCard', course: course %>
+              <% end %>
+            </div>
+          </div>
+        </li>
     <% end %>
-  </div>
 
+  </ul>
 
 </div>
 

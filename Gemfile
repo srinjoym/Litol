@@ -10,7 +10,7 @@ gem 'bootstrap-sass',       '3.2.0.0'
 gem 'roo', '~> 2.0.0'
 gem 'materialize-sass'
 gem 'toastr-rails'
-
+gem 'prawn', '~> 2.0.2'
 gem 'sass-rails',   '5.0.2'
 gem 'uglifier',     '2.5.3'
 gem 'coffee-rails', '4.1.0'

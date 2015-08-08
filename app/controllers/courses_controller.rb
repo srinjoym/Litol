@@ -27,7 +27,9 @@ class CoursesController < ApplicationController
   def index
     @available_courses =current_user.organization.courses
     @active_courses = getActiveCourses
+    @finished_courses = getFinishedCourses
     @available_courses-=getActiveCourses
+    @active_courses -=@finished_courses
     @temp_course = Course.find_by(name:"Create New Course")
   end
 
@@ -112,6 +114,16 @@ class CoursesController < ApplicationController
       end
     end
     return @active_courses
+  end
+
+  def getFinishedCourses
+    @finished_courses = Array.new
+    current_user.active_courses.each do |active_course|
+      if active_course.certification_complete
+        @finished_courses.push Course.find(active_course.course_id)
+      end
+    end
+    @finished_courses
   end
 
   def course_params

@@ -1,10 +1,10 @@
 class QuizResultsController < ApplicationController
   def new
-    @quiz = Quiz.find_by(id:params["quiz_id"])
+    @quiz = Quiz.find_by(id: params["quiz_id"])
     @answers = Array.new
 
     params.each do |param|
-      if  !param[0].to_f.nil?&&param[0].to_f>0
+      if !param[0].to_f.nil?&&param[0].to_f>0
         @answers.push param[1]
       end
     end
@@ -16,19 +16,37 @@ class QuizResultsController < ApplicationController
       end
     end
 
-    if(@numCorrect>=3)
+    if (@numCorrect>=3)
       passed=true
     else
       passed = false
     end
-    if QuizResult.find_by(chapter_id:@quiz.chapter_id, user_id:current_user.id)
-      QuizResult.find_by(chapter_id:@quiz.chapter_id, user_id:current_user.id).destroy
+    if QuizResult.find_by(chapter_id: @quiz.chapter_id, user_id: current_user.id)
+      QuizResult.find_by(chapter_id: @quiz.chapter_id, user_id: current_user.id).destroy
     end
-    @quiz_result = QuizResult.create(quiz_id:@quiz.id,user_id: current_user.id, passed:passed, score:@numCorrect,chapter_id:@quiz.chapter_id,time_passed:Time.now)
-    render 'show'
+    @quiz_result = QuizResult.create(quiz_id: @quiz.id, user_id: current_user.id, passed: passed, score: @numCorrect, chapter_id: @quiz.chapter_id, time_passed: Time.now)
+    certified = true
+    Chapter.find(@quiz.chapter_id).course.chapters.each do |chapter|
+      if chapter.quiz.quiz_results.last.nil?||!chapter.quiz.quiz_results.last.passed
+        certified=false
+      end
+    end
+    course = ActiveCourse.find_by(course_id: Chapter.find(@quiz.chapter_id).course.id, user_id: current_user.id)
+    course.certification_complete=certified
+    course.save
+if certified
+  render 'certificate'
+else
+  render 'show'
+end
+end
+
+  def certificate
+
   end
-  def show
+def show
   @quiz_result= QuizResult.find(params[:id])
-  end
+end
+
 end
 
