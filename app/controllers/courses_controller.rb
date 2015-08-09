@@ -11,6 +11,12 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @chapters = @course.chapters
+    @finishedChapters = getFinishedChapter(@course)
+    if !@finishedChapters.nil?
+      @currentChapters = @chapters-@finishedChapters
+    else
+      @currentChapters=@chapters
+    end
     if (current_user.active_courses.find_by(course_id: @course.id).nil?)
       @active_course = ActiveCourse.new(user_id: current_user.id, course_id: @course.id, certification_complete: false)
       @active_course.save
@@ -18,7 +24,7 @@ class CoursesController < ApplicationController
   end
 
   def createTempCourse
-    newCourse  = Course.create(name:"Create New Course", description: "Enter Description Here", imageSource:"NewCourse.png", default:false)
+    newCourse = Course.create(name: "Create New Course", description: "Enter Description Here", imageSource: "NewCourse.png", default: false)
 
     current_user.organization.courses << newCourse
     redirect_to edit_course_path newCourse.id
@@ -30,7 +36,7 @@ class CoursesController < ApplicationController
     @finished_courses = getFinishedCourses
     @available_courses-=getActiveCourses
     @active_courses -=@finished_courses
-    @temp_course = Course.find_by(name:"Create New Course")
+    @temp_course = Course.find_by(name: "Create New Course")
   end
 
   def editMode
@@ -43,14 +49,14 @@ class CoursesController < ApplicationController
   def save
     @oldCourse = Course.find(params[:course_id])
     i=0
-    current_user.organization.courses.each do|course|
+    current_user.organization.courses.each do |course|
       if course == @oldCourse
         break
       end
       i=i+1
     end
     if !@oldCourse.default
-     
+
       @newCourse = Course.new(course_params)
       @newCourse.id = @oldCourse.id
       @newCourse.chapters = @oldCourse.chapters
@@ -130,5 +136,25 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:photo, :name, :description)
   end
 
+  def getFinishedChapter course
+    @finishedChapters = Array.new
+    course.chapters.each do |chapter|
+      if passed?(chapter)==1
+        @finishedChapters.push chapter
+      end
+    end
+    @finishedChapters
+  end
 
+  def passed? (chapter)
+    if !chapter.quiz.nil? && !chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil?
+      if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: false)
+        return 0
+      elsif chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: true)
+        return 1
+      end
+    else
+      return -1
+    end
+  end
 end

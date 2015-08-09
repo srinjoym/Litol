@@ -2,42 +2,45 @@
 
   <h2><%= @course.name %></h2>
 
-  <h3>Chapters</h3>
   <ul class="collapsible" data-collapsible="expandable">
+    <% if !@currentChapters.nil? %>
+        <li>
+          <div class="collapsible-header active"><h3 class="center">Current Chapters</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
 
-    <li>
-      <div class="collapsible-header active">Current Chapters</div>
-      <div class="collapsible-body">
-        <div class="row">
-          <% @chapters.each do |chapter| %>
-              <% if passed?(chapter)==0 %>
-                  <%= render 'courses/failChapterCard', chapter: chapter %>
-              <% elsif passed?(chapter)==-1 %>
-                  <%= render 'courses/editChapterCard', chapter: chapter %>
+              <% @currentChapters.each do |chapter| %>
+                  <% if passed?(chapter)==0 %>
+                      <%= render 'courses/failChapterCard', chapter: chapter %>
+                  <% elsif passed?(chapter)==-1 %>
+                      <%= render 'courses/editChapterCard', chapter: chapter %>
+                  <% end %>
               <% end %>
-          <% end %>
-          <% if current_user.clearance>1%>
-          <%= render 'courses/disabledChapterCard'%>
-              <%end%>
-        </div>
-      </div>
-    </li>
+              <% if current_user.clearance>1 %>
+                  <%= render 'courses/disabledChapterCard' %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+    <% end %>
 
-    <li>
-      <div class="collapsible-header">Finished Chapters</div>
-      <div class="collapsible-body">
-        <div class="row">
-          <% @chapters.each do |chapter| %>
-              <% if passed?(chapter)==1 %>
+    <% if !@finishedChapters.nil? %>
+        <li>
+          <div class="collapsible-header"><h3 class="center">Finished Chapters</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
+
+              <% @finishedChapters.each do |chapter| %>
                   <%= render 'courses/passChapterCard', chapter: chapter %>
               <% end %>
-          <% end %>
-        </div>
-      </div>
-    </li>
 
-
-
+              <% if current_user.clearance>1&& @currentChapters.nil? %>
+                  <%= render 'courses/disabledChapterCard' %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+    <% end %>
   </ul>
 </div>
 
