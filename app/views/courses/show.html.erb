@@ -3,7 +3,7 @@
   <h2><%= @course.name %></h2>
 
   <ul class="collapsible" data-collapsible="expandable">
-    <% if !@currentChapters.nil? && !@currentChapters.empty?%>
+    <% if !@currentChapters.nil? %>
         <li>
           <div class="collapsible-header active"><h3 class="center">Current Chapters</h3></div>
           <div class="collapsible-body">
@@ -24,7 +24,7 @@
         </li>
     <% end %>
 
-    <% if !@finishedChapters.nil? && !@finishedChapters.empty? %>
+    <% if !@finishedChapters.nil?  %>
         <li>
           <div class="collapsible-header"><h3 class="center">Finished Chapters</h3></div>
           <div class="collapsible-body">
