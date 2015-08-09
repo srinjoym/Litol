@@ -10,7 +10,7 @@
               <% @active_courses.each do |course| %>
                   <%= render 'courses/editCourseCard', course: course %>
               <% end %>
-              <% if current_user.clearance>1 %>
+              <% if current_user.clearance>1 && @available_courses.first.nil?%>
                   <%= render 'courses/disabledCourseCard' %>
               <% end %>
             </div>
@@ -27,7 +27,7 @@
               <% @available_courses.each do |course| %>
                   <%= render 'courses/editCourseCard', course: course %>
               <% end %>
-              <% if current_user.clearance>1&& @active_courses.first.nil?  %>
+              <% if current_user.clearance>1  %>
                   <%= render 'courses/disabledCourseCard' %>
               <% end %>
             </div>

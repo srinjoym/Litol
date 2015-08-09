@@ -1,36 +1,74 @@
 <div class="container">
+  <ul class="collapsible" data-collapsible="expandable">
 
-  <% if !@active_courses.first.nil? %>
-      <h2 style="margin-bottom:10px">Current Courses</h2>
-  <% end %>
 
-  <div class="row">
-    <% @active_courses.each do |course| %>
-        <% if @editCourse==course %>
-            <%= render 'courses/saveCourseCard', course:course %>
-        <% else %>
-            <%= render 'courses/courseCard', course: course %>
-        <% end %>
+    <% if !@active_courses.first.nil? %>
+        <li>
+          <div class="collapsible-header active"><h3 class="center">Current Courses</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
+              <% @active_courses.each do |course| %>
+                  <% if @editCourse==course %>
+                      <%= render 'courses/saveCourseCard', course: course %>
+                  <% else %>
+                      <%= render 'courses/courseCard', course: course %>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>
     <% end %>
-  </div>
 
-  <% if !@available_courses.first.nil? %>
-      <h2>Availaible Courses</h2>
-  <% end %>
 
-  <div class="row">
-    <% @available_courses.each do |course| %>
-    <% if @editCourse==course %>
-        <%= render 'courses/saveCourseCard', course:course %>
-    <% else %>
-        <%= render 'courses/courseCard', course: course %>
+    <% if !@available_courses.first.nil? %>
+        <li>
+          <div class="collapsible-header active"><h3 class="center">Available Courses</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
+              <% @available_courses.each do |course| %>
+                  <% if @editCourse==course %>
+                      <%= render 'courses/saveCourseCard', course: course %>
+                  <% else %>
+                      <%= render 'courses/courseCard', course: course %>
+                  <% end %>
+              <% end %>
+
+            </div>
+          </div>
+        </li>
     <% end %>
-        <%end%>
-  </div>
+    <% if !@finished_courses.first.nil? %>
+        <li>
+          <div class="collapsible-header"><h3 class="center">Finished Courses</h3></div>
+          <div class="collapsible-body">
+            <div class="row">
+              <% @finished_courses.each do |course| %>
+                  <% if @editCourse==course %>
+                      <%= render 'courses/saveCourseCard', course: course %>
+                  <% else %>
+                      <%= render 'courses/courseCard', course: course %>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+    <% end %>
 
-
+  </ul>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

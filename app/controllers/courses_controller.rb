@@ -85,7 +85,10 @@ class CoursesController < ApplicationController
   def edit
     @available_courses =current_user.organization.courses
     @active_courses = getActiveCourses
+    @finished_courses = getFinishedCourses
     @available_courses-=getActiveCourses
+    @active_courses -=@finished_courses
+    @temp_course = Course.find_by(name: "Create New Course")
     @editCourse = Course.find_by id: params[:id]
     @course= Course.new
   end
