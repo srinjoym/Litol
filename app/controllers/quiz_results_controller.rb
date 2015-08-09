@@ -28,7 +28,7 @@ class QuizResultsController < ApplicationController
     certified = true
     Chapter.find(@quiz.chapter_id).course.chapters.each do |chapter|
       if !chapter.quiz.nil?
-        if chapter.quiz.quiz_results.last.nil?||!chapter.quiz.quiz_results.last.passed
+        if chapter.quiz.quiz_results.where(user_id:current_user.id).last.nil?||!chapter.quiz.quiz_results.where(user_id:current_user.id).last.passed
           certified=false
         end
       end
