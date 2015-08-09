@@ -9,7 +9,18 @@ class ChaptersController < ApplicationController
 
     @edit_chapter = Chapter.find_by(id: params[:id])
     @course =@edit_chapter.course
+
     @chapters = @course.chapters
+    @finishedChapters = getFinishedChapter(@course)
+    if !@finishedChapters.nil?
+      @currentChapters = @chapters-@finishedChapters
+    else
+      @currentChapters=@chapters
+    end
+    if (current_user.active_courses.find_by(course_id: @course.id).nil?)
+      @active_course = ActiveCourse.new(user_id: current_user.id, course_id: @course.id, certification_complete: false)
+      @active_course.save
+    end
   end
   def save
     chapter = Chapter.find(params[:chapter_id])
@@ -44,6 +55,28 @@ class ChaptersController < ApplicationController
       newChapter.sections << Section.create(name:"Section "+i.to_s, contentType:"vid",chapter_id: newChapter.id,order:i, content:"Enter Link Here")
     end
     redirect_to edit_chapter_path newChapter.id
+  end
+
+  def getFinishedChapter course
+    @finishedChapters = Array.new
+    course.chapters.each do |chapter|
+      if passed?(chapter)==1
+        @finishedChapters.push chapter
+      end
+    end
+    @finishedChapters
+  end
+
+  def passed? (chapter)
+    if !chapter.quiz.nil? && !chapter.quiz.quiz_results.find_by(user_id: current_user.id).nil?
+      if chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: false)
+        return 0
+      elsif chapter.quiz.quiz_results.find_by(user_id: current_user.id, passed: true)
+        return 1
+      end
+    else
+      return -1
+    end
   end
 
 end
